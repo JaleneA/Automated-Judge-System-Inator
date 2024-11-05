@@ -108,7 +108,77 @@ public class ChatBotTest {
 
    }
 
-   
+   @Test
+   public void testGetNumResponsesGeneratedMethodExists() {
+
+    try {
+        Method method = ChatBot.class.getDeclaredMethod("getNumResponsesGenerated");
+        assertNotNull(method);
+    } catch (NoSuchMethodException e) {
+        throw new AssertionError("Method 'getNumResponsesGenerated' not found in ChatBot Class.");
+    }
+
+   }
+
+   @Test
+   public void testGetTotalNumResponsesGeneratedMethodExists() {
+
+    try {
+        Method method = ChatBot.class.getDeclaredMethod("getTotalNumResponsesGenerated");
+        assertNotNull(method);
+    } catch (NoSuchMethodException e) {
+        throw new AssertionError("Method 'getTotalNumResponsesGenerated' not found in ChatBot Class.");
+    }
+
+   }
+
+   @Test
+   public void testLimitReachedMethodExists() {
+
+    try {
+        Method method = ChatBot.class.getDeclaredMethod("limitReached");
+        assertNotNull(method);
+    } catch (NoSuchMethodException e) {
+        throw new AssertionError("Method 'limitReached' not found in ChatBot Class.");
+    }
+
+   }
+
+   @Test
+   public void testGenerateResponseMethodExists() {
+
+    try {
+        Method method = ChatBot.class.getDeclaredMethod("generateResponse");
+        assertNotNull(method);
+    } catch(NoSuchMethodException e) {
+        throw new AssertionError("Method 'generateResponse' not found in ChatBot Class.");
+    }
+
+   }
+
+   @Test
+   public void testPromptMethodExists() {
+
+    try {
+        Method method = ChatBot.class.getDeclaredMethod("prompt", String.class);
+        assertNotNull(method);
+    } catch(NoSuchMethodException e) {
+        throw new AssertionError("Method 'prompt' not found in ChatBot Class.");
+    }
+    
+   }
+
+   @Test
+   public void testToStringMethodExists() {
+
+    try {
+        Method method = ChatBot.class.getDeclaredMethod("prompt", String.class);
+        assertNotNull(method);
+    } catch(NoSuchMethodException e) {
+        throw new AssertionError("Method 'prompt' not found in ChatBot Class.");
+    }
+    
+   }
 
     
 
