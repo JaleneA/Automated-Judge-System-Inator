@@ -5,8 +5,19 @@ import java.lang.reflect.Method;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 public class ChatBotGeneratorTest {
+
+    @BeforeAll
+    public void testChatBotClassExists() {
+        try {
+            Class<?> testclass = Class.forName("group12.ChatBotGenerator");
+            assertNotNull(testclass);
+        } catch (ClassNotFoundException e) {
+            throw new AssertionError("ChatBotGenerator class does not exist in the package 'group12'", e);
+        }
+    }
 
     @Test
     public void testGenerateChatBotLLMMethodExists() {
