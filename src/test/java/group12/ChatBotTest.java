@@ -8,6 +8,7 @@ import java.lang.reflect.Modifier;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 
 public class ChatBotTest {
@@ -36,6 +37,16 @@ public class ChatBotTest {
     }
 
     @Test
+    public void testChatBotNameIsString() {
+        try {
+            Field field = ChatBot.class.getDeclaredField("chatBotName");
+            assertEquals(String.class, field.getType()); 
+        } catch (NoSuchFieldException e) {
+            throw new AssertionError("Attribute 'chatBotName' should be of the String type", e);
+        }
+    }
+
+    @Test
     public void testAttributenumResponsesGeneratedExists() {
 
         try {
@@ -49,6 +60,16 @@ public class ChatBotTest {
     }
 
     @Test
+    public void testnumResponsesGeneratedIsInteger() {
+        try {
+            Field field = ChatBot.class.getDeclaredField("numResponsesGenerated");
+            assertEquals(Integer.class, field.getType()); 
+        } catch (NoSuchFieldException e) {
+            throw new AssertionError("Attribute 'chatBotName' should be of the Integer type", e);
+        }
+    }
+
+    @Test
     public void testAttributemessageLimitExists() {
 
         try {
@@ -59,6 +80,16 @@ public class ChatBotTest {
             throw new AssertionError("Attribute 'messageLimit' does not exist in the ChatBot class");
         }
 
+    }
+
+    @Test
+    public void testmessageLimitIsInteger() {
+        try {
+            Field field = ChatBot.class.getDeclaredField("messageLimit");
+            assertEquals(Integer.class, field.getType()); 
+        } catch (NoSuchFieldException e) {
+            throw new AssertionError("Attribute 'messageLimit' should be of the Integer type", e);
+        }
     }
 
     @Test
@@ -94,6 +125,16 @@ public class ChatBotTest {
             throw new AssertionError("Attribute 'messageNumber' does not exist in the ChatBot class");
         }
 
+    }
+
+    @Test
+    public void testmessageNumberIsInteger() {
+        try {
+            Field field = ChatBot.class.getDeclaredField("messageNumber");
+            assertEquals(Integer.class, field.getType()); 
+        } catch (NoSuchFieldException e) {
+            throw new AssertionError("Attribute 'messageNumber' should be of the Integer type", e);
+        }
     }
 
    @Test
