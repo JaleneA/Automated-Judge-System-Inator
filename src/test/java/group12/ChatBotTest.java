@@ -3,8 +3,10 @@ package group12;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -57,6 +59,28 @@ public class ChatBotTest {
             throw new AssertionError("Attribute 'messageLimit' does not exist in the ChatBot class");
         }
 
+    }
+
+    @Test
+    public void testMessageLimitIsStatic() {
+
+        try {
+            Field field = ChatBot.class.getDeclaredField("messageLimit");
+            assertTrue(Modifier.isStatic(field.getModifiers()));
+        } catch (NoSuchFieldException e) {
+            throw new AssertionError("Attribute 'messageLimit' should be static in the ChatBot class");
+        }
+    }
+
+    @Test
+    public void testMessageNumberIsStatic() {
+
+        try {
+            Field field = ChatBot.class.getDeclaredField("messageNumber");
+            assertTrue(Modifier.isStatic(field.getModifiers()));
+        } catch (NoSuchFieldException e) {
+            throw new AssertionError("Attribute 'messageNumber' should be static in the ChatBot class");
+        }
     }
 
     @Test
