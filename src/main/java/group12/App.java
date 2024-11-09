@@ -13,12 +13,10 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import observer.TestMarking;
-import template.ZipExtractor;
-import template.ZipExtractorTemplate;
+import template.facade.ZipManager;
 
 public class App {
     private static TestMarking testMarking;
@@ -26,19 +24,29 @@ public class App {
     public static void main(String[] args) throws IOException {
         testMarking = new TestMarking();
 
-        // Zip Handler
+         // Zip Handler
         String namingPattern = ".*_A1\\.zip";
         String baseDirectory = "src/test/resources";
         File outputDirectory = new File("src/main/java");
-        ZipExtractorTemplate extractor = new ZipExtractor(namingPattern);
-        List<File> extractedFiles = extractor.extract(baseDirectory, outputDirectory);
-        System.out.println(extractedFiles.size() + " .java files extracted.");
 
-        // Run the tests
-        runJUnitTests();
+        ZipManager zipManager = new ZipManager(namingPattern);
 
-        // Generate the PDF report
-        PDFGenerator.generatePDFReport("Test Results", testResults);
+        try {
+            // Extract
+            zipManager.extractAndPrepareFiles(baseDirectory, outputDirectory);
+
+            // Run
+            runJUnitTests();
+
+            // Generate
+            PDFGenerator.generatePDFReport("Test Results", testResults);
+
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+        } finally {
+            // Cleanup
+            zipManager.cleanup();
+        }
     }
 
     private static void runJUnitTests() {
