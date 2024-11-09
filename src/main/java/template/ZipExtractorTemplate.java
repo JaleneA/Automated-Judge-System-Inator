@@ -5,7 +5,7 @@
  * https://docs.oracle.com/javase/8/docs/api/java/util/zip/package-summary.html
  */
 
-package group12;
+package template;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -18,7 +18,15 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class ZipExtractor {
+public abstract class ZipExtractorTemplate {
+
+    // Template Method: Defines The Steps For Extraction
+    public final List<File> extract(String baseDirectory, File outputDir) throws IOException {
+        File zipFile = findZipFile(baseDirectory); // Step Uno
+        return extractZip(zipFile, outputDir); // Step Dos
+        }
+
+    protected abstract File findZipFile(String baseDirectory) throws IOException;
 
     public static List<File> extractZip(File zipFile, File outputDir) throws IOException {
         List<File> extractedFiles = new ArrayList<>();
@@ -30,18 +38,23 @@ public class ZipExtractor {
         try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zipFile))) {
             ZipEntry entry;
             while ((entry = zipInputStream.getNextEntry()) != null) {
-                File file = new File(outputDir, entry.getName());
-
-                if (entry.isDirectory()) {
-                    file.mkdirs();
-                } else if (entry.getName().endsWith(".java")) {
-                    writeToFile(zipInputStream, file);
-                    extractedFiles.add(file);
+                if (shouldExtract(entry)) {
+                    File file = new File(outputDir, entry.getName());
+                    if (entry.isDirectory()) {
+                        file.mkdirs();
+                    } else {
+                        writeToFile(zipInputStream, file);
+                        extractedFiles.add(file);
+                    }
                 }
                 zipInputStream.closeEntry();
             }
         }
         return extractedFiles;
+    }
+
+    protected static boolean shouldExtract(ZipEntry entry) {
+        return entry.getName().endsWith(".java");
     }
 
     private static void writeToFile(InputStream inputStream, File file) throws IOException {

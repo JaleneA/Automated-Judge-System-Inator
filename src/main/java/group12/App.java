@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 import observer.TestMarking;
+import template.ZipExtractor;
+import template.ZipExtractorTemplate;
 
 public class App {
     private static TestMarking testMarking;
@@ -24,13 +26,13 @@ public class App {
     public static void main(String[] args) throws IOException {
         testMarking = new TestMarking();
 
-        // Path to the submissions zip file
-        String submissionsZipPath = "src/test/resources/816032676_A1.zip";
+        // Zip Handler
+        String namingPattern = ".*_A1\\.zip";
+        String baseDirectory = "src/test/resources";
         File outputDirectory = new File("src/main/java");
-
-        // Extract the zip file
-        List<File> extractedFiles = ZipExtractor.extractZip(new File(submissionsZipPath), outputDirectory);
-        System.out.println(extractedFiles.size() + " Number of .java Files Extracted.");
+        ZipExtractorTemplate extractor = new ZipExtractor(namingPattern);
+        List<File> extractedFiles = extractor.extract(baseDirectory, outputDirectory);
+        System.out.println(extractedFiles.size() + " .java files extracted.");
 
         // Run the tests
         runJUnitTests();
@@ -82,7 +84,7 @@ public class App {
                     }
                 }
             } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
-                e.printStackTrace();
+                System.err.println("Error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             }
         }
         displayAccumulatedTestResults();
