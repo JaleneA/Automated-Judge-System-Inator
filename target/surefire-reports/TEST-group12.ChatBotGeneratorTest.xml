@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="group12.ChatBotGeneratorTest" time="0.015" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="group12.ChatBotGeneratorTest" time="0.032" tests="11" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="TT"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire9361972129843477020\surefirebooter17162528745338097943.jar C:\Users\Ronaldo\AppData\Local\Temp\surefire9361972129843477020 2024-11-04T09-15-06_570-jvmRun1 surefire6774708335512420391tmp surefire_01460584436867885833tmp"/>
+    <property name="sun.java.command" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire14101366939497691461\surefirebooter11074081686653602494.jar C:\Users\Ronaldo\AppData\Local\Temp\surefire14101366939497691461 2024-11-09T03-48-44_567-jvmRun1 surefire12965583167574024043tmp surefire_015809299319217694989tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="group12.ChatBotGeneratorTest"/>
     <property name="surefire.test.class.path" value="C:\Users\Ronaldo\Documents\GitHub\Automated-Judge-System-Inator\target\test-classes;C:\Users\Ronaldo\Documents\GitHub\Automated-Judge-System-Inator\target\classes;C:\Users\Ronaldo\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Ronaldo\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Ronaldo\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Ronaldo\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Ronaldo\.m2\repository\org\junit\vintage\junit-vintage-engine\5.9.1\junit-vintage-engine-5.9.1.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire9361972129843477020\surefirebooter17162528745338097943.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire14101366939497691461\surefirebooter11074081686653602494.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23+37-2369"/>
@@ -60,11 +60,15 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testGenerateChatBotLLMMethodExists" classname="group12.ChatBotGeneratorTest" time="0.006"/>
-  <testcase name="testGenerateChatBotLLM1" classname="group12.ChatBotGeneratorTest" time="0"/>
-  <testcase name="testGenerateChatBotLLM2" classname="group12.ChatBotGeneratorTest" time="0"/>
+  <testcase name="testGenerateChatBotLLMIsPublic" classname="group12.ChatBotGeneratorTest" time="0.013"/>
+  <testcase name="testGenerateChatBotLLMIsStatic" classname="group12.ChatBotGeneratorTest" time="0"/>
+  <testcase name="testGenerateChatBotLLMMethodExists" classname="group12.ChatBotGeneratorTest" time="0"/>
+  <testcase name="testChatBotGeneratorIsPublic" classname="group12.ChatBotGeneratorTest" time="0.001"/>
+  <testcase name="testGenerateChatBotLLMReturnString" classname="group12.ChatBotGeneratorTest" time="0.003"/>
+  <testcase name="testGenerateChatBotLLM1" classname="group12.ChatBotGeneratorTest" time="0.001"/>
+  <testcase name="testGenerateChatBotLLM2" classname="group12.ChatBotGeneratorTest" time="0.001"/>
   <testcase name="testGenerateChatBotLLM3" classname="group12.ChatBotGeneratorTest" time="0.001"/>
-  <testcase name="testGenerateChatBotLLM4" classname="group12.ChatBotGeneratorTest" time="0"/>
+  <testcase name="testGenerateChatBotLLM4" classname="group12.ChatBotGeneratorTest" time="0.001"/>
   <testcase name="testGenerateChatBotLLM5" classname="group12.ChatBotGeneratorTest" time="0"/>
   <testcase name="testGenerateChatBotLLM6" classname="group12.ChatBotGeneratorTest" time="0"/>
 </testsuite>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="group12.ChatBotTest" time="0.034" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="group12.ChatBotTest" time="0.038" tests="46" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="TT"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire15774626952539698199\surefirebooter16384962811235893004.jar C:\Users\Ronaldo\AppData\Local\Temp\surefire15774626952539698199 2024-11-05T17-15-59_814-jvmRun1 surefire14436001163070868449tmp surefire_014181584772330821393tmp"/>
+    <property name="sun.java.command" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire8328691826921840268\surefirebooter13866407032281365789.jar C:\Users\Ronaldo\AppData\Local\Temp\surefire8328691826921840268 2024-11-09T03-23-57_906-jvmRun1 surefire5377374060548596476tmp surefire_013511095784813924952tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="group12.ChatBotTest"/>
     <property name="surefire.test.class.path" value="C:\Users\Ronaldo\Documents\GitHub\Automated-Judge-System-Inator\target\test-classes;C:\Users\Ronaldo\Documents\GitHub\Automated-Judge-System-Inator\target\classes;C:\Users\Ronaldo\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Ronaldo\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Ronaldo\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.1\junit-jupiter-engine-5.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\junit\platform\junit-platform-engine\1.9.1\junit-platform-engine-1.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Ronaldo\.m2\repository\org\junit\platform\junit-platform-commons\1.9.1\junit-platform-commons-1.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.1\junit-jupiter-api-5.9.1.jar;C:\Users\Ronaldo\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Ronaldo\.m2\repository\org\junit\vintage\junit-vintage-engine\5.9.1\junit-vintage-engine-5.9.1.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire15774626952539698199\surefirebooter16384962811235893004.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Ronaldo\AppData\Local\Temp\surefire8328691826921840268\surefirebooter13866407032281365789.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23+37-2369"/>
@@ -60,16 +60,50 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testAttributeChatBotNameExists" classname="group12.ChatBotTest" time="0.02"/>
+  <testcase name="testMessageNumberIsPrivate" classname="group12.ChatBotTest" time="0.008"/>
+  <testcase name="testmessageNumberIsInt" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testToStringMethodExists" classname="group12.ChatBotTest" time="0.004"/>
+  <testcase name="testGetTotalNumResponsesGeneratedIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetTotalNumMessagesRemainingIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetTotalNumResponsesGeneratedIsStatic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetTotalNumMessagesRemainingIsStatic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testAttributeChatBotNameExists" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testToStringReturnString" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testChatBotClassIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testPromptMethodExists" classname="group12.ChatBotTest" time="0"/>
   <testcase name="testGenerateResponseMethodExists" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetNumResponsesGeneratedIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testLimitReachedIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testAttributeNumResponsesGeneratedExists" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testLimitReachedIsStatic" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testOverloadhatBotConstructorIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testPromptReturnString" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testMessageNumberIsStatic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetTotalNumMessagesRemainingReturnInt" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGenerateResponseReturnString" classname="group12.ChatBotTest" time="0"/>
   <testcase name="testGetTotalNumResponsesGeneratedMethodExists" classname="group12.ChatBotTest" time="0"/>
-  <testcase name="testlimitReachedMethodExists" classname="group12.ChatBotTest" time="0"/>
   <testcase name="testOverloadhatBotConstructorExists" classname="group12.ChatBotTest" time="0"/>
-  <testcase name="testAttributenumResponsesGeneratedExists" classname="group12.ChatBotTest" time="0"/>
-  <testcase name="testAttributemessageNumberExists" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testChatBotNameIsPrivate" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetChatBotNameIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testMessageLimitIsInt" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testDefaultChatBotConstructorIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testAttributemessageNumberExists" classname="group12.ChatBotTest" time="0"/>
   <testcase name="testGetNumResponsesGeneratedMethodExists" classname="group12.ChatBotTest" time="0.001"/>
-  <testcase name="testAttributemessageLimitExists" classname="group12.ChatBotTest" time="0"/>
-  <testcase name="testpromptMethodExists" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetNumResponsesGeneratedReturnInt" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testAttributemessageLimitExists" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testGetTotalNumMessagesRemainingMethodExists" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testChatBotNameIsString" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testLimitReachedMethodExists" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testToStringIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testNumResponsesGeneratedIsPrivate" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testLimitReachedReturnBoolean" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGenerateResponseIsPublic" classname="group12.ChatBotTest" time="0"/>
   <testcase name="testDefaultChatBotConstructorExists" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testMessageLimitIsStatic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testMessageLimitIsPrivate" classname="group12.ChatBotTest" time="0"/>
   <testcase name="testGetChatBotNameMethodExists" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testPromptIsPublic" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testNumResponsesGeneratedIsInt" classname="group12.ChatBotTest" time="0.001"/>
+  <testcase name="testGetTotalNumResponsesGeneratedReturnInt" classname="group12.ChatBotTest" time="0"/>
+  <testcase name="testGetChatBotNameReturnString" classname="group12.ChatBotTest" time="0"/>
 </testsuite>
