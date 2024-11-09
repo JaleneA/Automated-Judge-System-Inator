@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import proxy.ChatBotGeneratorProxy;
-import service.ChatBotGeneratorService;
+import proxy.service.ChatBotGeneratorService;
 
 public class ChatBotGeneratorTest {
     private ChatBotGeneratorService chatBotGenerator;

@@ -8,7 +8,7 @@ package proxy;
 
 import java.lang.reflect.InvocationTargetException;
 
-import service.ChatBotGeneratorService;
+import proxy.service.ChatBotGeneratorService;
 
 public class ChatBotGeneratorProxy implements ChatBotGeneratorService {
 

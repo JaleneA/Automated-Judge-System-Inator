@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import proxy.ChatBotProxy;
-import service.ChatBotService;
+import proxy.service.ChatBotService;
 
 public class ChatBotTest {
 

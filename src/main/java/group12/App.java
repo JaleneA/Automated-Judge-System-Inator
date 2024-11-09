@@ -21,7 +21,6 @@ import observer.TestMarking;
 public class App {
     private static TestMarking testMarking;
     private static Map<String, Boolean> testResults = new HashMap<>();
-
     public static void main(String[] args) throws IOException {
         testMarking = new TestMarking();
 

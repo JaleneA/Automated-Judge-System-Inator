@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import proxy.ChatBotPlatformProxy;
-import service.ChatBotPlatformService;
+import proxy.service.ChatBotPlatformService;
 
 // Needs Work
 

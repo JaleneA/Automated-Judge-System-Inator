@@ -3,7 +3,7 @@
  * https://refactoring.guru/design-patterns/proxy
  */
 
-package service;
+package proxy.service;
 
 public interface ChatBotService {
     String prompt(String requestMessage);
