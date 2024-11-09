@@ -65,7 +65,7 @@ public class ChatBotTest {
         try {
             Field field = ChatBot.class.getDeclaredField("chatBotName");
             assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'chatBotName' field should be public in the ChatBot class");
+                       "The 'chatBotName' field should be private in the ChatBot class");
         } catch (NoSuchFieldException e) {
             throw new AssertionError("Field 'chatBotName' should exist in the ChatBot class", e);
         }
@@ -101,7 +101,7 @@ public class ChatBotTest {
         try {
             Field field = ChatBot.class.getDeclaredField("numResponsesGenerated");
             assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'numResponsesGenerated' field should be public in the ChatBot class");
+                       "The 'numResponsesGenerated' field should be private in the ChatBot class");
         } catch (NoSuchFieldException e) {
             throw new AssertionError("Field 'numResponsesGenerated' should exist in the ChatBot class", e);
         }
@@ -138,7 +138,7 @@ public class ChatBotTest {
         try {
             Field field = ChatBot.class.getDeclaredField("messageLimit");
             assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'messageLimit' field should be public in the ChatBot class");
+                       "The 'messageLimit' field should be private in the ChatBot class");
         } catch (NoSuchFieldException e) {
             throw new AssertionError("Field 'messageLimit' should exist in the ChatBot class", e);
         }
@@ -197,7 +197,7 @@ public class ChatBotTest {
         try {
             Field field = ChatBot.class.getDeclaredField("messageNumber");
             assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'messageNumber' field should be public in the ChatBot class");
+                       "The 'messageNumber' field should be private in the ChatBot class");
         } catch (NoSuchFieldException e) {
             throw new AssertionError("Field 'messageNumber' should exist in the ChatBot class", e);
         }
