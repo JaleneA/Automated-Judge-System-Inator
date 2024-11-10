@@ -4,7 +4,6 @@ proxy\ChatBotGeneratorProxy.class
 proxy\service\ChatBotGeneratorService.class
 proxy\service\ChatBotService.class
 observer\TestMarker.class
-group12\ZipExtractor.class
 ChatBotTest.class
 proxy\service\ChatBotPlatformService.class
 proxy\ChatBotProxy.class
