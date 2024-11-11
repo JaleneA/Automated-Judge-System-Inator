@@ -30,7 +30,7 @@ import template.facade.ZipManager;
 public class App {
     public static void main(String[] args) {
         String mainZipPattern = "Submission_Batch_\\d+\\.zip";
-        String baseDirectory = "src/test/resources";
+        String baseDirectory = "src/main/java/resources";
         File outputDirectory = new File("src/main/java");
 
         Set<String> requiredFiles = new HashSet<>();
