@@ -9,7 +9,9 @@ C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\observer\TestMarking.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\factory\ChatBotTestGrading.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\servicelocator\StudentService.java
+C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\testclasses\ChatBotSimulationTest.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\proxy\service\ChatBotService.java
+C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\factory\ChatBotSimulationTestGrading.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\observer\TestMarker.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\testclasses\ChatBotTest.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\template\ZipExtractorTemplate.java
@@ -26,3 +28,5 @@ C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\factory\TestGradingFactory.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\group12\App.java
 C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\proxy\service\ChatBotGeneratorService.java
+C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\proxy\service\ChatBotSimulationService.java
+C:\Users\jalen\OneDrive\Documents\UWI (22-25)\Y3Sem1\COMP3607\Project\Automated-Judge-System-Inator\src\main\java\proxy\ChatBotSimulationProxy.java

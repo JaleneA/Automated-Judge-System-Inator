@@ -1,6 +1,6 @@
 /**
  * @author jalenearmstrong
- * @author reonaldowalker
+ * @author ronaldowalker
  * 
  * Test Suite For ChatBot - 55 Tests | Functional : 8 | Structural : 47
  * jalenearmstrong - Functionality Tests + Modified Structural Test For Proxy Enivornment

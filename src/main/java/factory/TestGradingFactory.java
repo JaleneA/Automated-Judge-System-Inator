@@ -21,7 +21,11 @@ public class TestGradingFactory {
             case "ChatBotPlatform" -> {
                 return new ChatBotPlatformTestGrading(studentId);
             }
-                
+
+            case "ChatBotSimulation" -> {
+                return new ChatBotSimulationTestGrading(studentId);
+            }
+
             default -> {
                 // To Remove
                 System.out.println("No grading strategy available for class: " + className);
