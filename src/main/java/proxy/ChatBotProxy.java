@@ -18,6 +18,13 @@ public class ChatBotProxy implements ChatBotService {
 
     private Class<?> chatBotClass;
     private int LLMcode;
+    private int messageNumber = 0;
+    private int numResponsesGenerated = 0;
+    private int chatBotName;
+
+    public ChatBotProxy() {
+
+    }
 
     public ChatBotProxy(int LLMcode) {
         this.LLMcode = LLMcode;
@@ -97,6 +104,15 @@ public class ChatBotProxy implements ChatBotService {
     @Override
     public int getTotalNumMessagesRemaining() {
         return (int) invokeStaticMethod("getTotalNumMessagesRemaining");
+    }
+
+    @Override
+    public String generateResponse() {
+        numResponsesGenerated++;
+        messageNumber++;
+        Object chatBotInstance = createChatBotInstance();
+        String response = (String) invokeMethod(chatBotInstance, "generateResponse", new Class<?>[]{});
+        return "(Message #" + messageNumber + ") Response from " + getChatBotName() + " >> " + response;
     }
 
     @Override

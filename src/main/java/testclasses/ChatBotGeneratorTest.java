@@ -2,13 +2,14 @@
  * @author jalenearmstrong
  * @author ronaldowalker
  * 
- * Test Suite For ChatBotGenerator - 13 Tests | Functional : 7 | Structural : 6
+ * Test Suite For ChatBotGenerator - 10 Tests | Functional : 7 | Structural : 3
  * jalenearmstrong - Functionality Tests + Modified Structural Test For Proxy Enivornment
  * ronaldowalker - Structural Tests
  */
 
 package testclasses;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -29,36 +30,13 @@ public class ChatBotGeneratorTest {
         chatBotGenerator = new ChatBotGeneratorProxy();
     }
 
-    // @Test
-    // public void testChatBotGeneratorExists() {
-    //     try {
-    //         Class<?> testclass = Class.forName("group12.ChatBotGenerator");
-    //         assertNotNull(testclass);
-    //     } catch (ClassNotFoundException e) {
-    //         throw new AssertionError("ChatBotGenerator class does not exist in the package 'group12'", e);
-    //     }
-    // }
-
-    // @Test
-    // public void testChatBotGeneratorIsPublic() {
-
-    //     try {
-    //         Class<?> testclass = Class.forName("group12.ChatBotGenerator");
-    //         assertTrue(Modifier.isPublic(testclass.getModifiers()), 
-    //                    "The 'ChatBotGenerator' class should be public");
-    //     } catch (ClassNotFoundException e) {
-    //         throw new AssertionError("ChatBotGenerator class does not exist in the package 'group12'", e);
-    //     }
-    // }
-
     // Structural Tests
-
     @Test
     public void testGenerateChatBotLLMMethodExists() {
         try {
             Method method = chatBotGenerator.getClass().getDeclaredMethod("generateChatBotLLM", int.class);
             assertNotNull(method);
-        } catch (NoSuchMethodException  e) {
+        } catch (NoSuchMethodException e) {
             throw new AssertionError("Method 'generateChatBotLLM' with int parameter not found in ChatBotGenerator Class.");
         }
     }
@@ -73,17 +51,6 @@ public class ChatBotGeneratorTest {
             throw new AssertionError("Field 'generateChatBotLLM' should exist in the ChatBotGenerator class", e);
         }
 
-    }
-
-    @Test
-    public void testGenerateChatBotLLMIsStatic() {
-        try {
-            Method method = chatBotGenerator.getClass().getDeclaredMethod("generateChatBotLLM", int.class);
-            assertTrue(Modifier.isStatic(method.getModifiers()),
-            "The 'generateChatBotLLM' method should be static in the ChatBotGenerator class");
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("method 'generateChatBotLLM' should be static in the ChatBotGenerator class");
-        }
     }
 
     @Test

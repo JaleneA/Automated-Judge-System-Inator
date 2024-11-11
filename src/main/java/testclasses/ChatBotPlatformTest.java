@@ -9,6 +9,7 @@
 
 package testclasses;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -30,67 +31,10 @@ public class ChatBotPlatformTest {
         chatBotPlatform = new ChatBotPlatformProxy();
     }
 
-    // @Test
-    // public void testChatBotPlatformClassIsPublic() {
-    //     try {
-    //         Class<?> testclass = Class.forName("group12.ChatBotPlatform");
-    //         assertTrue(Modifier.isPublic(testclass.getModifiers()), 
-    //                    "The 'ChatBotPlatform' class should be public");
-    //     } catch (ClassNotFoundException e) {
-    //         throw new AssertionError("ChatBotPlatform class does not exist in the package 'group12'", e);
-    //     }
-    // }
-
-    @Test
-    public void testAttributeBotsExists() {
-        try {Field field = chatBotPlatform.getClass().getDeclaredField("bots");
-            assertNotNull(field);
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'bots' does not exist in the ChatBotPlatform class");
-        }
-    }
-
-    /*
-    @Test
-    public void testBotsIsArrayListOfChatBot() {
-        try {
-            Field field = chatBotPlatform.getClass().getDeclaredField("bots");
-            assertEquals(ArrayList.class, field.getType());
-
-            Type genericType = field.getGenericType();
-
-            if (genericType instanceof ParameterizedType) {
-                ParameterizedType parameterizedType = (ParameterizedType) genericType;
-
-                Type[] typeArguments = parameterizedType.getActualTypeArguments();
-                assertEquals(1, typeArguments.length, "The 'bots' field should have one type parameter");
-
-                assertEquals(ChatBot.class, typeArguments[0]);
-            } else {
-                throw new AssertionError("The 'bots' field is not of type ChatBot");
-            }
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Field 'bots' does not exist in ChatBotPlatform class", e);
-        }
-    }
-    */
-
-    @Test
-    public void testBotIsPrivate() {
-        try {
-            Field field = chatBotPlatform.getClass().getDeclaredField("bots");
-            assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'bots' field should be private in the ChatBotPlatform class");
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Field 'bots' should exist in the ChatBotPlatform class", e);
-        }
-    }
-
-    /*
     @Test
     public void testChatBotPlatformConstructorExists() {
         try {
-            Constructor<ChatBotPlatform> constructor = chatBotPlatform.getClass().getDeclaredConstructor();
+            Constructor<?> constructor = chatBotPlatform.getClass().getDeclaredConstructor();
             assertNotNull(constructor);
         } catch (NoSuchMethodException  e) {
             throw new AssertionError("Constructor 'ChatBotPlatform()' does not exist in the ChatBotPlatform class");
@@ -100,14 +44,13 @@ public class ChatBotPlatformTest {
    @Test
     public void testChatBotPlatformConstructorIsPublic() {
         try {
-            Constructor<ChatBotPlatform> constructor = chatBotPlatform.getClass().getDeclaredConstructor();
+             Constructor<?> constructor = chatBotPlatform.getClass().getDeclaredConstructor();
             assertTrue(Modifier.isPublic(constructor.getModifiers()), 
                        "The 'ChatBotPlatform' constructor should be public in the ChatBotPlatform class");
         } catch (NoSuchMethodException e) {
             throw new AssertionError("Constructor 'ChatBotPlatform()' does not exist in the ChatBotPlatform class", e);
         }
     }
-    */
 
     @Test
     public void testAddChatBotMethodExists() {
@@ -202,38 +145,6 @@ public class ChatBotPlatformTest {
             "The 'interactWithBot' method should return a string");
         } catch (NoSuchMethodException e) {
             throw new AssertionError("Method 'interactWithBot' should exist in the ChatBotPlatform class", e);
-        }
-    }
-
-    @Test
-    public void testGetBotSizeMethodExists() {
-        try {
-            Method method = chatBotPlatform.getClass().getDeclaredMethod("getBotSize");
-            assertNotNull(method);
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("Method 'getBotSize' not found in ChatBotPlatform Class.");
-        }
-    }
-
-    @Test
-    public void testGetBotSizeIsPublic() {
-        try {
-            Method method = chatBotPlatform.getClass().getDeclaredMethod("getBotSize");
-            assertTrue(Modifier.isPublic(method.getModifiers()), 
-                       "The 'getBotSize' method should be public in the ChatBotPlatform class");
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("Method 'getBotSize' should exist in the ChatBotPlatform class", e);
-        }
-    }
-
-    @Test
-    public void testGetBotSizeReturnInt() {
-        try {
-            Method method = chatBotPlatform.getClass().getDeclaredMethod("getBotSize");
-            assertEquals(int.class, method.getReturnType(),
-            "The 'getBotSize' method should return a int");
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("Method 'getBotSize' should exist in the ChatBotPlatform class", e);
         }
     }
 

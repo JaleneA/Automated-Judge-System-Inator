@@ -13,4 +13,5 @@ public interface ChatBotService {
     boolean limitReached();
     int getTotalNumResponsesGenerated();
     int getTotalNumMessagesRemaining();
+    String generateResponse();
 }

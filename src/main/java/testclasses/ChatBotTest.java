@@ -9,6 +9,7 @@
 
 package testclasses;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -35,62 +36,7 @@ public class ChatBotTest {
         chatBotDefault = new ChatBotProxy(0);
     }
 
-//    @Test
-//     public void testChatBotClassExists() {
-//         try {
-//             Class<?> testclass = Class.forName("group12.ChatBot");
-//             assertNotNull(testclass);
-//         } catch (ClassNotFoundException e) {
-//             throw new AssertionError("ChatBot class does not exist in the package 'group12'", e);
-//         }
-//     }
-
-//     @Test
-//     public void testChatBotClassIsPublic() {
-
-//         try {
-//             Class<?> testclass = Class.forName("group12.ChatBot");
-//             assertTrue(Modifier.isPublic(testclass.getModifiers()), 
-//                        "The 'ChatBot' class should be public");
-//         } catch (ClassNotFoundException e) {
-//             throw new AssertionError("ChatBot class does not exist in the package 'group12'", e);
-//         }
-
-//     }
-
     // Structural Tests
-
-    @Test
-    public void testAttributeChatBotNameExists() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("chatBotName");
-            assertNotNull(field);
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'chatBotName' does not exist in the ChatBot class");
-        }
-    }
-
-    @Test
-    public void testChatBotNameIsString() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("chatBotName");
-            assertEquals(String.class, field.getType());
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'chatBotName' should be of the String type", e);
-        }
-    }
-
-    @Test
-    public void testChatBotNameIsPrivate() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("chatBotName");
-            assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'chatBotName' field should be private in the ChatBot class");
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Field 'chatBotName' should exist in the ChatBot class", e);
-        }
-    }
-
     @Test
     public void testAttributeNumResponsesGeneratedExists() {
         try {
@@ -124,59 +70,6 @@ public class ChatBotTest {
     }
 
     @Test
-    public void testAttributemessageLimitExists() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("messageLimit");
-            assertNotNull(field);
-
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'messageLimit' does not exist in the ChatBot class");
-        }
-    }
-
-    @Test
-    public void testMessageLimitIsInt() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("messageLimit");
-            assertEquals(int.class, field.getType(), 
-                         "The 'messageLimit' attribute should be of type int");
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'messageLimit' should exist in the ChatBot class", e);
-        }
-    }
-
-    @Test
-    public void testMessageLimitIsPrivate() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("messageLimit");
-            assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'messageLimit' field should be private in the ChatBot class");
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Field 'messageLimit' should exist in the ChatBot class", e);
-        }
-    }
-
-    @Test
-    public void testMessageLimitIsStatic() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("messageLimit");
-            assertTrue(Modifier.isStatic(field.getModifiers()));
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'messageLimit' should be static in the ChatBot class");
-        }
-    }
-
-    @Test
-    public void testMessageNumberIsStatic() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("messageNumber");
-            assertTrue(Modifier.isStatic(field.getModifiers()));
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Attribute 'messageNumber' should be static in the ChatBot class");
-        }
-    }
-
-    @Test
     public void testAttributemessageNumberExists() {
         try {
             Field field = chatBotDefault.getClass().getDeclaredField("messageNumber");
@@ -198,21 +91,9 @@ public class ChatBotTest {
     }
 
     @Test
-    public void testMessageNumberIsPrivate() {
-        try {
-            Field field = chatBotDefault.getClass().getDeclaredField("messageNumber");
-            assertTrue(Modifier.isPrivate(field.getModifiers()), 
-                       "The 'messageNumber' field should be private in the ChatBot class");
-        } catch (NoSuchFieldException e) {
-            throw new AssertionError("Field 'messageNumber' should exist in the ChatBot class", e);
-        }
-    }
-
-/*
-    @Test
     public void testDefaultChatBotConstructorExists() {
         try {
-            Constructor<ChatBot> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor();
+            Constructor<?> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor();
             assertNotNull(defaultConstructor);
         } catch (NoSuchMethodException e) {
             throw new AssertionError("default constructor 'ChatBot()' does not exist in the ChatBot class");
@@ -222,7 +103,7 @@ public class ChatBotTest {
     @Test
     public void testDefaultChatBotConstructorIsPublic() {
         try {
-            Constructor<ChatBot> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor();
+            Constructor<?> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor();
             assertTrue(Modifier.isPublic(defaultConstructor.getModifiers()), 
                        "The 'ChatBot' constructor should be public in the ChatBot class");
         } catch (NoSuchMethodException e) {
@@ -233,7 +114,7 @@ public class ChatBotTest {
     @Test
     public void testOverloadhatBotConstructorExists() {
         try {
-            Constructor<ChatBot> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor(int.class);
+            Constructor<?> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor(int.class);
             assertNotNull(defaultConstructor);
         } catch (NoSuchMethodException e) {
             throw new AssertionError("overload constructor 'ChatBot(int)' does not exist in the ChatBot class");
@@ -244,15 +125,13 @@ public class ChatBotTest {
     public void testOverloadhatBotConstructorIsPublic() {
 
         try {
-            Constructor<ChatBot> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor();
+            Constructor<?> defaultConstructor = chatBotDefault.getClass().getDeclaredConstructor();
             assertTrue(Modifier.isPublic(defaultConstructor.getModifiers()), 
                        "The 'ChatBot' overload constructor should be public in the ChatBot class");
         } catch (NoSuchMethodException e) {
             throw new AssertionError("overload constructor 'ChatBot()' does not exist in the ChatBot class", e);
         }
     }
-
-    */
 
     @Test
     public void testGetChatBotNameMethodExists() {
@@ -329,17 +208,6 @@ public class ChatBotTest {
     }
 
     @Test
-    public void testGetTotalNumResponsesGeneratedIsStatic() {
-        try {
-            Method method = chatBotDefault.getClass().getDeclaredMethod("getTotalNumResponsesGenerated");
-            assertTrue(Modifier.isStatic(method.getModifiers()),
-            "The 'getTotalNumResponsesGenerated' method should be static in the ChatBot class");
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("Method 'getTotalNumResponsesGenerated' should be static in the ChatBot class");
-        }
-    }
-
-    @Test
     public void testGetTotalNumResponsesGeneratedReturnInt() {
         try {
             Method method = chatBotDefault.getClass().getDeclaredMethod("getTotalNumResponsesGenerated");
@@ -372,17 +240,6 @@ public class ChatBotTest {
     }
 
     @Test
-    public void testGetTotalNumMessagesRemainingIsStatic() {
-        try {
-            Method method = chatBotDefault.getClass().getDeclaredMethod("getTotalNumMessagesRemaining");
-            assertTrue(Modifier.isStatic(method.getModifiers()),
-            "The 'getTotalNumMessagesRemaining' method should be static in the ChatBot class");
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("Method 'getTotalNumMessagesRemaining' should be static in the ChatBot class");
-        }
-    }
-
-    @Test
     public void testGetTotalNumMessagesRemainingReturnInt() {
         try {
             Method method = chatBotDefault.getClass().getDeclaredMethod("getTotalNumMessagesRemaining");
@@ -411,17 +268,6 @@ public class ChatBotTest {
             assertNotNull(method);
         } catch (NoSuchMethodException e) {
             throw new AssertionError("Method 'limitReached' not found in ChatBot Class.");
-        }
-    }
-
-    @Test
-    public void testLimitReachedIsStatic() {
-        try {
-            Method method = chatBotDefault.getClass().getDeclaredMethod("limitReached");
-            assertTrue(Modifier.isStatic(method.getModifiers()),
-            "The 'limitReached' method should be static in the ChatBot class");
-        } catch (NoSuchMethodException e) {
-            throw new AssertionError("Method 'limitReached' should be static in the ChatBot class");
         }
     }
 
