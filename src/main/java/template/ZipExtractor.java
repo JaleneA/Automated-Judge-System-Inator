@@ -49,7 +49,7 @@ public class ZipExtractor extends ZipExtractorTemplate {
         try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(mainZipFile))) {
             ZipEntry entry;
             while ((entry = zipInputStream.getNextEntry()) != null) {
-                if (!entry.isDirectory() && entry.getName().endsWith(".zip")) {
+                if (!entry.isDirectory() && entry.getName().endsWith(".zip") || entry.getName().endsWith("816033000_A1.zip")) {
                     String zipFileName = entry.getName();
 
                     // Skiping Files That Don't Follow The Naming Convention

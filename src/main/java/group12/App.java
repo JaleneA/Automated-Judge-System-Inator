@@ -35,8 +35,6 @@ public class App {
 
         Set<String> requiredFiles = new HashSet<>();
         requiredFiles.add("ChatBotPlatform.java");
-        requiredFiles.add("ChatBotSimulation.java");
-        requiredFiles.add("ChatBotGenerator.java");
         requiredFiles.add("ChatBot.java");
 
         ZipManager zipManager = new ZipManager(mainZipPattern);
@@ -71,8 +69,8 @@ public class App {
                 String studentId = entry.getKey();
                 List<File> extractedFiles = entry.getValue();
 
-                if (!hasRequiredFiles(extractedFiles, requiredFiles)) {
-                    System.out.println("Skipping tests for student " + studentId + " - missing required files.");
+                if (extractedFiles.isEmpty()) {
+                    System.err.println("Student " + studentId + " - No files found in the zip. Skipping.");
                     continue;
                 }
 
@@ -88,8 +86,15 @@ public class App {
                         modifyJavaFileWithPackage(javaFile, studentName);
                     }
                 }
-                compileJavaFiles(extractedFiles);
-                runTestsOnJavaFiles(extractedFiles, studentId);
+
+                boolean structureOnly = eligible(extractedFiles, requiredFiles);
+                if (structureOnly) {
+                    System.out.println("Student " + studentId + " - missing required files. Performing Structure Only Tests.");
+                    runTestsOnJavaFiles(extractedFiles, studentId, structureOnly);
+                } else {
+                    compileJavaFiles(extractedFiles);
+                    runTestsOnJavaFiles(extractedFiles, studentId, structureOnly);
+                }
             }
         }
     }
@@ -121,11 +126,19 @@ public class App {
         return null;
     }
 
-    private static boolean hasRequiredFiles(List<File> extractedFiles, Set<String> requiredFiles) {
+    private static boolean eligible(List<File> extractedFiles, Set<String> requiredFiles) {
+        // Extract file names from the list of extracted files
         Set<String> extractedFileNames = extractedFiles.stream()
                 .map(File::getName)
                 .collect(Collectors.toSet());
-        return extractedFileNames.containsAll(requiredFiles);
+
+        boolean hasChatBot = extractedFileNames.contains("ChatBot.java");
+        boolean hasChatBotPlatform = extractedFileNames.contains("ChatBotPlatform.java");
+
+        if (hasChatBot || hasChatBotPlatform) {
+            return false;
+        }
+        return true;
     }
 
     public static void compileJavaFiles(List<File> javaFiles) {
@@ -167,13 +180,11 @@ public class App {
         }
     }
 
-    private static void runTestsOnJavaFiles(List<File> extractedFiles, String studentId) {
+    private static void runTestsOnJavaFiles(List<File> extractedFiles, String studentId, boolean structureOnly) {
         TestGradingObserver studentTestObserver = TestGradingManager.getGradingObserver();
-
         for (File javaFile : extractedFiles) {
             if (javaFile.getName().endsWith(".java")) {
-                String className = javaFile.getName().replace(".java", "");
-
+                String className = javaFile.getName().replace(".java", structureOnly ? "Structure" : "");
                 TestGrading testGrading = TestGradingFactory.createTestGrading(studentId, className);
                 testGrading.addObserver(studentTestObserver);
                 testGrading.runTests(javaFile);
@@ -186,7 +197,7 @@ public class App {
             testResultsMap.put(result.getTestClassName(), result.isPassed());
         }
 
-       PDFGenerator.generatePDFReport(studentId, testResultsMap);
+        PDFGenerator.generatePDFReport(studentId, testResultsMap);
         System.out.println("Resetting results for student " + studentId);
         studentTestObserver.reset();
     }
