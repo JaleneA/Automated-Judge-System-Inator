@@ -87,6 +87,7 @@ public class ChatBotPlatformTestGrading implements TestGrading {
             launcher.registerTestExecutionListeners(listener);
 
             launcher.execute(testPlan);
+            testMarker.displayResults();
             reset();
 
         } catch (PreconditionViolationException e) {

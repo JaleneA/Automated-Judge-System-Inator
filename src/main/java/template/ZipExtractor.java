@@ -94,7 +94,7 @@ public class ZipExtractor extends ZipExtractorTemplate {
         try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(studentZipFile))) {
             ZipEntry entry;
             while ((entry = zipInputStream.getNextEntry()) != null) {
-                if (entry.getName().endsWith(".java") && !entry.isDirectory()) {
+                if ((entry.getName().endsWith(".java")) && !entry.isDirectory()) {
                     File outputFile = new File(outputDir, entry.getName());
                     File parentDir = outputFile.getParentFile();
                     if (parentDir != null && !parentDir.exists()) {
