@@ -1,3 +1,4 @@
+package testclasses;
 /**
  * @author jalenearmstrong
  * Test Suite For ChatBot
@@ -7,21 +8,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import proxy.ChatBotProxy;
 import proxy.service.ChatBotService;
 
-public class ChatBotTest {
 
+public class ChatBotTest {
     private ChatBotService chatBotDefault;
     private ChatBotService chatBotCustom;
 
     @BeforeEach
     public void setUp() {
-        chatBotDefault = new ChatBotProxy(0);
         chatBotCustom = new ChatBotProxy(1);
+        chatBotDefault = new ChatBotProxy(0);
     }
 
     @Test

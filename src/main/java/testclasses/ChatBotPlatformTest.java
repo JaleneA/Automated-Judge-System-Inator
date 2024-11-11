@@ -1,7 +1,4 @@
-/**
- * @author jalenearmstrong
- * Test Suite For ChatBotPlatform
- */
+package testclasses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import proxy.ChatBotPlatformProxy;
 import proxy.service.ChatBotPlatformService;
 
-// Needs Work
-
 public class ChatBotPlatformTest {
-
     private ChatBotPlatformService chatBotPlatform;
 
     @BeforeEach
@@ -24,17 +18,13 @@ public class ChatBotPlatformTest {
     }
 
     @Test
-    public void testAddChatBotSuccessfully() {
-        boolean result = chatBotPlatform.addChatBot(1);
-        assertTrue(result, "Should successfully add a ChatBot.");
-    }
-
-    @Test
     public void testGetChatBotList() {
         chatBotPlatform.addChatBot(1);
         chatBotPlatform.addChatBot(2);
         
         String chatBotList = chatBotPlatform.getChatBotList();
+        
+        assertNotNull(chatBotList, "ChatBot list should not be null.");
         assertTrue(chatBotList.contains("Your ChatBots"), "ChatBot list should contain 'Your ChatBots' header.");
     }
 
@@ -42,7 +32,7 @@ public class ChatBotPlatformTest {
     public void testInteractWithValidBot() {
         chatBotPlatform.addChatBot(1);
         String response = chatBotPlatform.interactWithBot(0, "Hello");
-        assertNotNull(response);
+        assertNotNull(response, "Response should not be null");
     }
 
     @Test

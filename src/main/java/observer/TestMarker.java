@@ -10,4 +10,5 @@ public interface TestMarker {
     int calculatePassedTests();
     int calculateFailedTests();
     void displayResults();
+    void reset();
 }

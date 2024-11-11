@@ -2,10 +2,12 @@
  * @author jalenearmstrong
  * PDF Generator-Inator
  * Adapted From: https://www.vogella.com/tutorials/JavaPDF/article.html
+ * Note: Still To Modify
  */
 
  package group12;
 
+ import java.io.File;
  import java.io.FileNotFoundException;
  import java.io.FileOutputStream;
  import java.util.Date;
@@ -25,7 +27,6 @@
  import com.itextpdf.text.pdf.PdfWriter;
  
  public class PDFGenerator {
-     private static final String FILE = "TestResults.pdf"; // File name for the PDF
      private static final Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     //  private static final Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
      private static final Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
@@ -33,6 +34,15 @@
  
      // Generate the PDF report with the title and test results
      public static void generatePDFReport(String title, Map<String, Boolean> testResults) {
+        String directoryPath = "src/student-results";
+        File directory = new File(directoryPath);
+
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        String FILE = directoryPath + File.separator + title + ".pdf";
+
          try {
              Document document = new Document();
              PdfWriter.getInstance(document, new FileOutputStream(FILE));

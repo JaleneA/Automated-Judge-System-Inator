@@ -1,14 +1,18 @@
 /**
  * @author jalenearmstrong
- * https://www.javatpoint.com/java-reflection
+ * Helpful Documentation
+ * https://www.baeldung.com/java-classloaders
  * https://refactoring.guru/design-patterns/proxy
  */
 
 package proxy;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-
 import proxy.service.ChatBotService;
+import servicelocator.StudentService;
 
 public class ChatBotProxy implements ChatBotService {
 
@@ -17,10 +21,17 @@ public class ChatBotProxy implements ChatBotService {
 
     public ChatBotProxy(int LLMcode) {
         this.LLMcode = LLMcode;
+        loadChatBotClass();
+    }
+
+    private void loadChatBotClass() {
         try {
-            this.chatBotClass = Class.forName("ChatBot");
+            String studentName = StudentService.getCurrentStudentName();
+            String classFilePath = "src/main/java/" + studentName + "/ChatBot.class";
+            CustomClassLoader classLoader = new CustomClassLoader();
+            this.chatBotClass = classLoader.loadClassFromFile(classFilePath);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("ChatBot class not found", e);
+            throw new RuntimeException("ChatBot class not found at the specified path", e);
         }
     }
 
@@ -96,5 +107,28 @@ public class ChatBotProxy implements ChatBotService {
         
         return "ChatBot Name: " + chatBotName + "     " +
             "Number Messages Used: " + numResponsesGenerated + "\n";
+    }
+
+    public int getLLMcode() {
+        return LLMcode;
+    }
+
+    public void setLLMcode(int LLMcode) {
+        this.LLMcode = LLMcode;
+    }
+
+    private class CustomClassLoader extends ClassLoader {
+        public Class<?> loadClassFromFile(String filePath) throws ClassNotFoundException {
+            try {
+                File classFile = new File(filePath);
+                byte[] classData = new byte[(int) classFile.length()];
+                try (FileInputStream fis = new FileInputStream(classFile)) {
+                    fis.read(classData);
+                }
+                return defineClass(null, classData, 0, classData.length);
+            } catch (IOException e) {
+                throw new ClassNotFoundException("Class file not found at: " + filePath, e);
+            }
+        }
     }
 }

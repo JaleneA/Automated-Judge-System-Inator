@@ -49,6 +49,13 @@ public class TestMarking implements TestMarker {
         System.out.println("Failed Tests: " + calculateFailedTests());
     }
 
+    @Override
+    public void reset() {
+        this.passedTests = 0;
+        this.failedTests = 0;
+        this.listeners.clear();
+    }
+
     public List<TestMarkingListener> getListeners() {
         return listeners;
     }
