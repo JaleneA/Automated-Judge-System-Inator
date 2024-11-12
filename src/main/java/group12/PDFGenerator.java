@@ -1,5 +1,6 @@
 /**
  * @author jalenearmstrong
+ * @author ronaldowalker
  * PDF Generator-Inator
  * Adapted From: https://www.vogella.com/tutorials/JavaPDF/article.html
  * Note: Still To Modify
@@ -7,124 +8,148 @@
 
  package group12;
 
- import java.io.File;
- import java.io.FileNotFoundException;
- import java.io.FileOutputStream;
- import java.util.Date;
- import java.util.Map;
- 
- import com.itextpdf.text.Anchor;
- import com.itextpdf.text.Chapter;
- import com.itextpdf.text.Document;
- import com.itextpdf.text.DocumentException;
- import com.itextpdf.text.Element;
- import com.itextpdf.text.Font;
- import com.itextpdf.text.Paragraph;
- import com.itextpdf.text.Phrase;
- import com.itextpdf.text.Section;
- import com.itextpdf.text.pdf.PdfPCell;
- import com.itextpdf.text.pdf.PdfPTable;
- import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Date;
+import java.util.Map;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
  
  public class PDFGenerator {
-     private static final Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    //  private static final Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-     private static final Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
- 
-     // Generate the PDF report with the title and test results
-     public static void generatePDFReport(String title, Map<String, Boolean> testResults) {
-        String directoryPath = "src/student-results";
+    // Define fonts for professional document styling
+    private static final Font headerFont = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD);
+    private static final Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+    private static final Font labelFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+    private static final Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
+    private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+
+    
+    // Method to generate the PDF report with title and test results
+    public static void generatePDFReport(String title, Map<String, Boolean> testResults) {
+        String directoryPath = "src/student-results"; // Directory path for PDF
         File directory = new File(directoryPath);
 
+        // Create directory if it does not exist
         if (!directory.exists()) {
             directory.mkdirs();
         }
 
-        String FILE = directoryPath + File.separator + title + ".pdf";
+        String FILE = directoryPath + File.separator + title + ".pdf"; // Full path for the PDF file
 
-         try {
-             Document document = new Document();
-             PdfWriter.getInstance(document, new FileOutputStream(FILE));
-             document.open();
-             
-             addMetaData(document);
-             addTitlePage(document);
-             addContent(document);
-             addTestResults(document, testResults); // Add test results to the PDF
-             
-             document.close();
-         } catch (DocumentException | FileNotFoundException e) {
+        try {
+            Document document = new Document(PageSize.A4, 50, 50, 50, 50); // Create document with A4 size and margins
+            PdfWriter.getInstance(document, new FileOutputStream(FILE)); // Set up PdfWriter
+            document.open(); // Open the document for writing
+            
+            addMetaData(document);       // Add metadata like author and title
+            addHeader(document, title);  // Add header with institution and course info
+            addTitlePage(document);      // Add the title page
+            addTestResults(document, testResults); // Add test results table
+            
+            document.close(); // Close the document after writing
+        } catch (DocumentException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    // Adds metadata to the document for PDF properties
+    private static void addMetaData(Document document) {
+        document.addTitle("Test Results Report");
+        document.addSubject("Test Report for Assignment");
+        document.addKeywords("Java, PDF, iText, Test Report");
+        document.addAuthor("Automated Judge System");
+        document.addCreator("Automated Judge System");
+    }
 
-         }
-     }
+    // Adds a header section with institution and course information
+    private static void addHeader(Document document, String title) throws DocumentException {
+        Paragraph header = new Paragraph();
+        
+        // Add institution and course name, center-aligned
+        header.add(new Paragraph("The University of the West Indies, St. Augustine", headerFont));
+        header.setAlignment(Element.ALIGN_CENTER);
+        addEmptyLine(header, 1);
+
+        // Course details with assignment title
+        Paragraph courseDetails = new Paragraph("COMP 2603 OBJECT ORIENTED PROGRAMMING 1\n" + title, labelFont);
+        courseDetails.setAlignment(Element.ALIGN_CENTER);
+        header.add(courseDetails);
+        addEmptyLine(header, 2);
+        
+        document.add(header); // Add header to the document
+    }
  
-     // Add metadata to the PDF
-     private static void addMetaData(Document document) {
-         document.addTitle("Test Results Report");
-         document.addSubject("Using iText");
-         document.addKeywords("Java, PDF, iText");
-         document.addAuthor("Automated Judge System");
-         document.addCreator("Automated Judge System");
-     }
+    // Adds a title page with general information about the report
+    private static void addTitlePage(Document document) throws DocumentException {
+        Paragraph preface = new Paragraph();
+        
+        addEmptyLine(preface, 1); // Space before the title
+        preface.add(new Paragraph("Test Results Report", titleFont)); // Title in bold
+        addEmptyLine(preface, 1);
+
+        // Add author and date information
+        preface.add(new Paragraph("Report generated by: " + System.getProperty("user.name") + ", " + new Date(),
+                smallBold));
+        addEmptyLine(preface, 2);
+
+        // Add document description
+        preface.add(new Paragraph("This document contains the results of the tests executed, including details for each case.", normalFont));
+        addEmptyLine(preface, 2);
+
+        document.add(preface);  // Add preface content to the document
+        document.newPage();     // Start a new page for the test results
+    }
  
-     // Add the title page to the PDF
-     private static void addTitlePage(Document document) throws DocumentException {
-         Paragraph preface = new Paragraph();
-         addEmptyLine(preface, 1);
-         preface.add(new Paragraph("Test Results Report", catFont));
- 
-         addEmptyLine(preface, 1);
-         preface.add(new Paragraph("Report generated by: " + System.getProperty("user.name") + ", " + new Date(),
-                 smallBold));
-         addEmptyLine(preface, 3);
-         preface.add(new Paragraph("This document contains the results of the tests executed.", smallBold));
-         
-         document.add(preface);
-         document.newPage();
-     }
- 
-     // Add the main content of the PDF
-     private static void addContent(Document document) throws DocumentException {
-         Anchor anchor = new Anchor("Test Results Summary", catFont);
-         anchor.setName("Test Results Summary");
- 
-         Chapter catPart = new Chapter(new Paragraph(anchor), 1);
-         Paragraph subPara = new Paragraph("Summary of test results", subFont);
-         Section subCatPart = catPart.addSection(subPara);
-         subCatPart.add(new Paragraph("Detailed results are listed below."));
- 
-         document.add(catPart);
-     }
- 
-     // Add test results in table format
-     private static void addTestResults(Document document, Map<String, Boolean> testResults) throws DocumentException {
-         Paragraph paragraph = new Paragraph();
-         addEmptyLine(paragraph, 2);
-         paragraph.add(new Paragraph("Test Results:", subFont));
-         addEmptyLine(paragraph, 1);
- 
-         PdfPTable table = new PdfPTable(2); // Two columns for test name and result
- 
-         // Table header
-         PdfPCell c1 = new PdfPCell(new Phrase("Test Name"));
-         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-         table.addCell(c1);
- 
-         c1 = new PdfPCell(new Phrase("Result"));
-         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-         table.addCell(c1);
-         table.setHeaderRows(1);
- 
-         // Populate the table with test results
-         for (Map.Entry<String, Boolean> entry : testResults.entrySet()) {
-             table.addCell(entry.getKey());
-             table.addCell(entry.getValue() ? "PASSED" : "FAILED");
-         }
- 
-         document.add(paragraph);
-         document.add(table);
-     }
+    // Adds a table with test results (pass/fail) for each test case
+    private static void addTestResults(Document document, Map<String, Boolean> testResults) throws DocumentException {
+        // Section title for the test results
+        Paragraph sectionTitle = new Paragraph("Test Results Summary", titleFont);
+        sectionTitle.setAlignment(Element.ALIGN_CENTER);
+        addEmptyLine(sectionTitle, 1);
+        document.add(sectionTitle);
+
+        // Create table with two columns: test case name and result
+        PdfPTable table = new PdfPTable(2);
+        table.setWidthPercentage(100); // Full width
+        table.setWidths(new int[]{3, 1}); // Set relative column widths
+
+        // Table headers with light gray background
+        PdfPCell header1 = new PdfPCell(new Phrase("Test Case Name", labelFont));
+        header1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        header1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.addCell(header1);
+
+        PdfPCell header2 = new PdfPCell(new Phrase("Result", labelFont));
+        header2.setHorizontalAlignment(Element.ALIGN_CENTER);
+        header2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.addCell(header2);
+
+        // Populate table with test results
+        for (Map.Entry<String, Boolean> entry : testResults.entrySet()) {
+            PdfPCell nameCell = new PdfPCell(new Phrase(entry.getKey(), normalFont));
+            nameCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(nameCell);
+
+            // Set pass/fail result with green or red background
+            PdfPCell resultCell = new PdfPCell(new Phrase(entry.getValue() ? "PASSED" : "FAILED", normalFont));
+            resultCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            resultCell.setBackgroundColor(entry.getValue() ? BaseColor.GREEN : BaseColor.RED);
+            table.addCell(resultCell);
+        }
+
+        document.add(table); // Add table to document
+    }
  
     //  // Create a simple list (can be customized further if needed)
     //  private static void createList(Section subCatPart) {
