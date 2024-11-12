@@ -30,7 +30,7 @@ import template.ZipExtractor;
 import template.facade.ZipManager;
 
 public class App {
-    private static final String LOG_FILE_PATH = "src/student-results/skipped_submissions.txt";
+    private static final String LOG_FILE_PATH = "src/student-results/skipped-submissions.txt";
     public static void main(String[] args) {
         String mainZipPattern = "Submission_Batch_\\d+\\.zip";
         String baseDirectory = "src/main/java/resources";
@@ -77,7 +77,7 @@ public class App {
                 if (!hasRequiredFiles(extractedFiles, requiredFiles)) {
                     String message = "Skipping Tests For Student Submission: " + studentZip.getName() + ". Reason: Missing Required Files.\n";
                     System.out.println(message);
-                    logMissingFiles(message);
+                    logSkippedFiles(message);
                     continue;
                 }
 
@@ -102,7 +102,7 @@ public class App {
 
     private static void modifyJavaFileWithPackage(File javaFile, String studentName) throws IOException {
         List<String> lines = Files.readAllLines(javaFile.toPath());
-        String packageDeclaration = "package " + studentName + ";\n";
+        String packageDeclaration = "package students." + studentName + ";\n";
         lines.add(0, packageDeclaration);  // Adding Package Declaration At The Top
         Files.write(javaFile.toPath(), lines);
     }
@@ -192,9 +192,17 @@ public class App {
         studentTestObserver.reset();
     }
 
-    private static void logMissingFiles(String message) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE_PATH, true))) {
-            writer.write(message);
+    public static void logSkippedFiles(String message) {
+        try {
+            File logFile = new File(LOG_FILE_PATH);
+            if (!logFile.exists()) {
+                logFile.getParentFile().mkdirs();
+                logFile.createNewFile();
+            }
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
+                writer.write(message);
+                writer.newLine();
+            }
         } catch (IOException e) {
             System.err.println("Error writing to log file: " + e.getMessage());
         }

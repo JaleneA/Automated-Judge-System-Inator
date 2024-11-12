@@ -91,7 +91,7 @@ public class ZipExtractor extends ZipExtractorTemplate {
         String studentName = extractStudentNameFromZipName(studentZipFile.getName());
         List<File> javaFiles = new ArrayList<>();
 
-        File outputDir = new File("src/main/java/" + studentName);
+        File outputDir = new File("src/main/java/students/" + studentName);
         if (!outputDir.exists()) {
             outputDir.mkdirs();
         }
@@ -140,9 +140,18 @@ public class ZipExtractor extends ZipExtractorTemplate {
         return null;
     }
 
-    private static void logMissingFiles(String message) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE_PATH, true))) {
-            writer.write(message);
+    public static void logMissingFiles(String message) {
+        try {
+            File logFile = new File(LOG_FILE_PATH);
+            if (!logFile.exists()) {
+                logFile.getParentFile().mkdirs();
+                logFile.createNewFile();
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
+                writer.write(message);
+                writer.newLine();
+            }
         } catch (IOException e) {
             System.err.println("Error writing to log file: " + e.getMessage());
         }

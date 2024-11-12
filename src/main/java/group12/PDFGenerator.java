@@ -1,32 +1,30 @@
 /**
- * @author jalenearmstrong
+ * @author jalenearmstrong (Editor)
  * PDF Generator-Inator
  * Adapted From: https://www.vogella.com/tutorials/JavaPDF/article.html
  * Note: Still To Modify
  */
 
- package group12;
+package group12;
 
- import java.io.File;
- import java.io.FileNotFoundException;
- import java.io.FileOutputStream;
- import java.util.Date;
- import java.util.Map;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Date;
+import java.util.Map;
  
- import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
- import com.itextpdf.text.Document;
- import com.itextpdf.text.DocumentException;
- import com.itextpdf.text.Element;
- import com.itextpdf.text.Font;
- import com.itextpdf.text.Paragraph;
- import com.itextpdf.text.Phrase;
- import com.itextpdf.text.pdf.PdfPCell;
- import com.itextpdf.text.pdf.PdfPTable;
- import com.itextpdf.text.pdf.PdfWriter;
- 
- public class PDFGenerator {
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+public class PDFGenerator {
      private static final Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
      private static final Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.RED);
      private static final Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
@@ -65,8 +63,8 @@ import com.itextpdf.text.Chapter;
         document.addTitle("Submission Results");
         document.addSubject("Using iText");
         document.addKeywords("Java, PDF, iText");
-        document.addAuthor("Automated Judge System");
-        document.addCreator("Automated Judge System");
+        document.addAuthor("Jalene Armstrong");
+        document.addCreator("Automated Judge System-Inator");
     }
 
     
@@ -116,13 +114,12 @@ import com.itextpdf.text.Chapter;
         titlePage.add(reportInfoParagraph);
     
         document.add(titlePage);
+        document.newPage();
     }
 
      private static void addContent(Document document) throws DocumentException {
-         Anchor anchor = new Anchor("Test Results", catFont);
-         anchor.setName("Test Results");
- 
-         Chapter title = new Chapter(new Paragraph(anchor), 1);
+         Paragraph title = new Paragraph("Test Feedback", catFont);
+         title.setAlignment(Element.ALIGN_CENTER);
          document.add(title);
      }
 
@@ -133,9 +130,12 @@ import com.itextpdf.text.Chapter;
         addEmptyLine(paragraph, 1);
     
         PdfPTable table = new PdfPTable(2);
+        table.setWidthPercentage(100);
+        table.setWidths(new int[]{3, 1});
 
         PdfPCell c1 = new PdfPCell(new Phrase("Test Name"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        c1.setBackgroundColor(BaseColor.LIGHT_GRAY);
         table.addCell(c1);
     
         c1 = new PdfPCell(new Phrase("Result"));

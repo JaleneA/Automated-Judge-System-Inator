@@ -48,10 +48,12 @@ public class ZipManager {
 
     public void cleanup() {
         File submissionsFolder = new File("src/main/java/submissions");
+        File studentsFolder = new File("src/main/java/students");
         File mainJavaFolder = new File("src/main/java");
 
         try {
             deleteDirectory(submissionsFolder);
+            deleteDirectory(studentsFolder);
 
             File[] files = mainJavaFolder.listFiles((dir, name) -> name.endsWith(".java") && !name.endsWith("Test.java"));
             if (files != null) {
@@ -63,27 +65,12 @@ public class ZipManager {
                     }
                 }
             }
-            
-            File[] studentIdFolders = mainJavaFolder.listFiles(File::isDirectory);
-            if (studentIdFolders != null) {
-                for (File studentFolder : studentIdFolders) {
-                    if (isValidStudentFolder(studentFolder)) {
-                        deleteDirectory(studentFolder);
-                    }
-                }
-            }
+
         } catch (Exception e) {
             System.err.println("Error during cleanup process.");
         }
         
         System.out.println("Grading Completed! Grade Reports Are Now Available :D.");
-    }
-    
-    // Helper Method
-    private boolean isValidStudentFolder(File folder) {
-        String folderName = folder.getName();
-        String regex = "^[a-zA-Z]+_\\d+$";
-        return folderName.matches(regex);
     }
 
     // Helper Method

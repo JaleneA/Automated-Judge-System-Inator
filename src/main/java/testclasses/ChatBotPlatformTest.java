@@ -2,7 +2,7 @@
  * @author jalenearmstrong
  * @author ronaldowalker
  * 
- * Test Suite For ChatBotGenerator - 21 Tests | Functional : 3 | Structural : 18
+ * Test Suite For ChatBotGenerator - 14 Tests | Functional : 3 | Structural : 11
  * jalenearmstrong - Functionality Tests + Modified Structural Test For Proxy Enivornment
  * ronaldowalker - Structural Tests
  */
@@ -10,7 +10,6 @@
 package testclasses;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -30,6 +29,8 @@ public class ChatBotPlatformTest {
     public void setUp() {
         chatBotPlatform = new ChatBotPlatformProxy();
     }
+
+    // Structural
 
     @Test
     public void testChatBotPlatformConstructorExists() {

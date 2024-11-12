@@ -1,5 +1,4 @@
 observer\TestMarking.class
-factory\DefaultTestGrading.class
 testclasses\ChatBotSimulationTest.class
 proxy\service\ChatBotGeneratorService.class
 proxy\service\ChatBotService.class

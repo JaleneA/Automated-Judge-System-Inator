@@ -34,7 +34,7 @@ public class ChatBotProxy implements ChatBotService {
     private void loadChatBotClass() {
         try {
             String studentName = StudentService.getCurrentStudentName();
-            String classFilePath = "src/main/java/" + studentName + "/ChatBot.class";
+            String classFilePath = "src/main/java/students/" + studentName + "/ChatBot.class";
             CustomClassLoader classLoader = new CustomClassLoader();
             this.chatBotClass = classLoader.loadClassFromFile(classFilePath);
         } catch (ClassNotFoundException e) {
@@ -131,6 +131,10 @@ public class ChatBotProxy implements ChatBotService {
 
     public void setLLMcode(int LLMcode) {
         this.LLMcode = LLMcode;
+    }
+
+    public void setNumResponsesGenerated(int numResponsesGenerated) {
+        this.numResponsesGenerated = numResponsesGenerated;
     }
 
     private class CustomClassLoader extends ClassLoader {

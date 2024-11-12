@@ -22,7 +22,7 @@ public class ChatBotGeneratorProxy implements ChatBotGeneratorService {
     public String generateChatBotLLM(int LLMcode) {
         try {
             String studentName = StudentService.getCurrentStudentName();
-            String classFilePath = "src/main/java/" + studentName + "/ChatBotGenerator.class";
+            String classFilePath = "src/main/java/students/" + studentName + "/ChatBotGenerator.class";
     
             CustomClassLoader classLoader = new CustomClassLoader();
             Class<?> chatBotGeneratorClass = classLoader.loadClassFromFile(classFilePath);

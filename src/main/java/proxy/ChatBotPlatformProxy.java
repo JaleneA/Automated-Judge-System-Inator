@@ -12,13 +12,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-
 import proxy.service.ChatBotPlatformService;
 import servicelocator.StudentService;
 
 public class ChatBotPlatformProxy implements ChatBotPlatformService {
-    private ArrayList<?> bots;
 
     public ChatBotPlatformProxy() {
 
@@ -28,7 +25,7 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
     public boolean addChatBot(int LLMCode) {
         try {
             String studentName = StudentService.getCurrentStudentName();
-            String classFilePath = "src/main/java/" + studentName + "/ChatBotPlatform.class";
+            String classFilePath = "src/main/java/students/" + studentName + "/ChatBotPlatform.class";
 
             CustomClassLoader classLoader = new CustomClassLoader();
             Class<?> chatBotPlatformClass = classLoader.loadClassFromFile(classFilePath);
@@ -45,7 +42,7 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
     public String getChatBotList() {
         try {
             String studentName = StudentService.getCurrentStudentName();
-            String classFilePath = "src/main/java/" + studentName + "/ChatBotPlatform.class";
+            String classFilePath = "src/main/java/students/" + studentName + "/ChatBotPlatform.class";
 
             CustomClassLoader classLoader = new CustomClassLoader();
             Class<?> chatBotPlatformClass = classLoader.loadClassFromFile(classFilePath);
@@ -63,7 +60,7 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
     public String interactWithBot(int botNumber, String message) {
         try {
             String studentName = StudentService.getCurrentStudentName();
-            String classFilePath = "src/main/java/" + studentName + "/ChatBotPlatform.class";
+            String classFilePath = "src/main/java/students/" + studentName + "/ChatBotPlatform.class";
 
             CustomClassLoader classLoader = new CustomClassLoader();
             Class<?> chatBotPlatformClass = classLoader.loadClassFromFile(classFilePath);

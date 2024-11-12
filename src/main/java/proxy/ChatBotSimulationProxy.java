@@ -22,7 +22,7 @@
      public boolean main() {
          try {
              String studentName = StudentService.getCurrentStudentName();
-             String classFilePath = "src/main/java/" + studentName + "/ChatBotSimulation.class";
+             String classFilePath = "src/main/java/students/" + studentName + "/ChatBotSimulation.class";
              CustomClassLoader classLoader = new CustomClassLoader();
              chatBotSimulationClass = classLoader.loadClassFromFile(classFilePath);
              return true;

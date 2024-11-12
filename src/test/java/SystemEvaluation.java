@@ -5,13 +5,41 @@
 
 import java.io.File;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class SystemEvaluation {
     private static final String DIRECTORY_PATH = "src/student-results";
+    private static final String SUBMISSIONS_DIR = "submissions";
+    private static final String STUDENTS_DIR = "students";
+    private static final String IGNORE_FILE = "ignored-submissions.txt";
+    private static final String SKIPPED_FILE = "skipped-submissions.txt";
 
-    // PDF Generation Testing
+    @Test
+    public void testNoSubmissionsFolderExists() {
+        File submissionsDir = new File(SUBMISSIONS_DIR);
+        assertFalse(submissionsDir.exists(), "The 'submissions' folder should not exist in the root directory.");
+    }
+
+    @Test
+    public void testNoStudentsFolderExists() {
+        File studentsDir = new File(STUDENTS_DIR);
+        assertFalse(studentsDir.exists(), "The 'students' folder should not exist in the root directory.");
+    }
+
+    @Test
+    public void testIgnoreSubmissionFileExists() {
+        File ignoreFile = new File(DIRECTORY_PATH + File.separator + IGNORE_FILE);
+        assertTrue(ignoreFile.exists(), "The 'ignore-submission.txt' file should be present in 'src/student-results'.");
+    }
+
+    @Test
+    public void testSkippedSubmissionsFileExists() {
+        File skippedFile = new File(DIRECTORY_PATH + File.separator + SKIPPED_FILE);
+        assertTrue(skippedFile.exists(), "The 'skipped-submissions.txt' file should be present in 'src/student-results'.");
+    }
+
     @Test
     public void testStudentResultsFolderExists() {
         File resultsDir = new File(DIRECTORY_PATH);
