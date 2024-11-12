@@ -67,20 +67,12 @@ public class ChatBotGeneratorTestGrading implements TestGrading {
                     boolean testPassed = testExecutionResult.getStatus() == TestExecutionResult.Status.SUCCESSFUL;
                     testMarker.markTest(testPassed);
                     notifyObservers(testPassed);
-
-                    if (!testPassed) {
-                        testExecutionResult.getThrowable().ifPresent(throwable ->
-                            System.out.println("Test " + testIdentifier.getDisplayName() + " failed due to: " + throwable.getMessage()));
-                    } else {
-                        System.out.println("Test " + testIdentifier.getDisplayName() + " executed: PASSED");
-                    }
                     gradingObserver.storeTestResult(testIdentifier.getDisplayName(), testPassed);
                 }
             };
 
             launcher.registerTestExecutionListeners(listener);
             launcher.execute(testPlan);
-            testMarker.displayResults();
             reset();
 
         } catch (PreconditionViolationException e) {

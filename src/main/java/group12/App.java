@@ -6,7 +6,9 @@
 package group12;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -28,6 +30,7 @@ import template.ZipExtractor;
 import template.facade.ZipManager;
 
 public class App {
+    private static final String LOG_FILE_PATH = "src/student-results/skipped_submissions.txt";
     public static void main(String[] args) {
         String mainZipPattern = "Submission_Batch_\\d+\\.zip";
         String baseDirectory = "src/main/java/resources";
@@ -45,14 +48,14 @@ public class App {
         try {
             List<File> studentZipFiles = extractStudentZipFiles(zipManager, baseDirectory, outputDirectory);
             if (studentZipFiles.isEmpty()) {
-                System.out.println("No student zip files found.");
+                System.out.println("No Student Submissions Found.");
                 return;
             }
 
             processStudentZipFiles(zipExtractor, studentZipFiles, requiredFiles);
 
         } catch (IOException e) {
-            System.err.println("Error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            System.err.println("Error: An Error Occurred");
         } finally {
             zipManager.cleanup();
         }
@@ -64,7 +67,7 @@ public class App {
 
         private static void processStudentZipFiles(ZipExtractor zipExtractor, List<File> studentZipFiles, Set<String> requiredFiles) throws IOException {
         for (File studentZip : studentZipFiles) {
-            System.out.println("Processing student zip file: " + studentZip.getName());
+            System.out.println("Processing Student Submission: " + studentZip.getName() + ".");
 
             Map<String, List<File>> studentFilesMap = zipExtractor.extractStudentZip(studentZip);
             for (Map.Entry<String, List<File>> entry : studentFilesMap.entrySet()) {
@@ -72,7 +75,9 @@ public class App {
                 List<File> extractedFiles = entry.getValue();
 
                 if (!hasRequiredFiles(extractedFiles, requiredFiles)) {
-                    System.out.println("Skipping tests for student " + studentId + " - missing required files.");
+                    String message = "Skipping Tests For Student Submission: " + studentZip.getName() + ". Reason: Missing Required Files.\n";
+                    System.out.println(message);
+                    logMissingFiles(message);
                     continue;
                 }
 
@@ -89,6 +94,7 @@ public class App {
                     }
                 }
                 compileJavaFiles(extractedFiles);
+                System.out.println("Compilation Successful For " + studentZip.getName() + ".\n-> Running Tests...\n");
                 runTestsOnJavaFiles(extractedFiles, studentId);
             }
         }
@@ -157,13 +163,11 @@ public class App {
             }
 
             int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                System.out.println("Compilation successful for all files.");
-            } else {
-                System.err.println("Compilation failed.");
+            if (exitCode != 0) {
+               System.err.println("Compilation Failed.");
             }
         } catch (IOException | InterruptedException e) {
-            System.err.println("Error compiling Java files: " + e.getMessage());
+            System.err.println("Error Compiling Java Files: " + e.getMessage());
         }
     }
 
@@ -179,15 +183,20 @@ public class App {
                 testGrading.runTests(javaFile);
             }
         }
-
-        studentTestObserver.displayTestResults();
         Map<String, Boolean> testResultsMap = new HashMap<>();
         for (TestResult result : studentTestObserver.getTestResults()) {
             testResultsMap.put(result.getTestClassName(), result.isPassed());
         }
 
-       PDFGenerator.generatePDFReport(studentId, testResultsMap);
-        System.out.println("Resetting results for student " + studentId);
+        PDFGenerator.generatePDFReport(studentId, testResultsMap);
         studentTestObserver.reset();
+    }
+
+    private static void logMissingFiles(String message) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE_PATH, true))) {
+            writer.write(message);
+        } catch (IOException e) {
+            System.err.println("Error writing to log file: " + e.getMessage());
+        }
     }
 }

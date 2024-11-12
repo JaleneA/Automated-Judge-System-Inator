@@ -37,7 +37,6 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
             return (boolean) method.invoke(chatBotPlatformInstance, LLMCode);
 
         } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
-            System.err.println("Error: " + e.getMessage());
             return false;
         }
     }
@@ -56,7 +55,6 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
             return (String) result;
 
         } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
-            System.err.println("Error: " + e.getMessage());
             return "Error: Could not retrieve chat bot list.";
         }
     }
@@ -75,7 +73,6 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
             return (String) result;
 
         } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
-            System.err.println("Error: " + e.getMessage());
             return "Error: Could not interact with bot.";
         }
     }
@@ -94,7 +91,6 @@ public class ChatBotPlatformProxy implements ChatBotPlatformService {
                 }
                 return defineClass(null, classData, 0, classData.length);
             } catch (IOException e) {
-                System.err.println("Error: " + e.getMessage());
                 throw new ClassNotFoundException("Error loading class from file: " + filePath, e);
             }
         }

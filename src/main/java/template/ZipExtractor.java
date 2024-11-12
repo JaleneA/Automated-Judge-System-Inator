@@ -6,9 +6,11 @@
 
 package template;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class ZipExtractor extends ZipExtractorTemplate {
+    private static final String LOG_FILE_PATH = "src/student-results/ignored-submissions.txt";
     private final String mainZipPattern;
     private final Pattern studentZipPattern = Pattern.compile("^[A-Za-z]+_[A-Za-z]+_\\d+_A1\\.zip$");
 
@@ -54,7 +57,9 @@ public class ZipExtractor extends ZipExtractorTemplate {
 
                     // Skiping Files That Don't Follow The Naming Convention
                     if (!studentZipPattern.matcher(zipFileName).matches()) {
-                        System.out.println("Skipping file: " + zipFileName + " (invalid naming convention for student folder)");
+                        String message = "Skipping Folder: " + zipFileName + " (Invalid Naming Convention For Student Submission\n- Should Be -> 'FirstName_LastName_ID_A1')\n";
+                        System.out.println(message);
+                        logMissingFiles(message);
                         continue;
                     }
 
@@ -94,7 +99,10 @@ public class ZipExtractor extends ZipExtractorTemplate {
         try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(studentZipFile))) {
             ZipEntry entry;
             while ((entry = zipInputStream.getNextEntry()) != null) {
-                if ((entry.getName().endsWith(".java")) && !entry.isDirectory()) {
+                if (entry.getName().equals("ChatBot.java") || 
+                    entry.getName().equals("ChatBotPlatform.java") || 
+                    entry.getName().equals("ChatBotGenerator.java") || 
+                    entry.getName().equals("ChatBotSimulation.java") && !entry.isDirectory()) {
                     File outputFile = new File(outputDir, entry.getName());
                     File parentDir = outputFile.getParentFile();
                     if (parentDir != null && !parentDir.exists()) {
@@ -130,5 +138,13 @@ public class ZipExtractor extends ZipExtractorTemplate {
             return firstName + "_" + studentId;
         }
         return null;
+    }
+
+    private static void logMissingFiles(String message) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE_PATH, true))) {
+            writer.write(message);
+        } catch (IOException e) {
+            System.err.println("Error writing to log file: " + e.getMessage());
+        }
     }
 }

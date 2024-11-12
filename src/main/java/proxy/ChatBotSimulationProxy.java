@@ -27,7 +27,6 @@
              chatBotSimulationClass = classLoader.loadClassFromFile(classFilePath);
              return true;
          } catch (ClassNotFoundException e) {
-             System.err.println("Error: " + e.getMessage());
              return false;
          }
      }
@@ -50,7 +49,6 @@
                  }
                  return defineClass(null, classData, 0, classData.length);
              } catch (IOException e) {
-                 System.err.println("Error: " + e.getMessage());
                  throw new ClassNotFoundException("Error loading class from file: " + filePath, e);
              }
          }

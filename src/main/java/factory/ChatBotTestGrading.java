@@ -70,23 +70,12 @@ public class ChatBotTestGrading implements TestGrading {
                     testMarker.markTest(testPassed);
                     notifyObservers(testPassed);
 
-                    if (!testPassed) {
-                        if (testExecutionResult.getThrowable().isPresent()) {
-                            System.out.println("Test " + testIdentifier.getDisplayName() + " failed due to: " +
-                                    testExecutionResult.getThrowable().get().getMessage());
-                        } else {
-                            System.out.println("Test " + testIdentifier.getDisplayName() + " failed for an unknown reason.");
-                        }
-                    } else {
-                        System.out.println("Test " + testIdentifier.getDisplayName() + " executed: PASSED");
-                    }
                     gradingObserver.storeTestResult(testIdentifier.getDisplayName(), testPassed);
                 }
             };
 
             launcher.registerTestExecutionListeners(listener);
             launcher.execute(testPlan);
-            testMarker.displayResults();
             reset();
 
         } catch (PreconditionViolationException e) {

@@ -22,20 +22,21 @@ public class ZipManager {
     }
 
     public List<File> extractAndPrepareFiles(String baseDirectory, File outputDirectory) throws IOException {
-        System.out.println("Starting extraction from base directory: " + baseDirectory);
+        System.out.println("Automated-Judge-System-Inator: Commencing Extraction\n");
 
         List<File> studentZipFiles = new ArrayList<>();
         try {
             studentZipFiles = zipExtractor.extract(baseDirectory, outputDirectory);
 
             if (studentZipFiles.isEmpty()) {
-                System.out.println("No student zip files found.");
+                System.out.println("No Student Submissions Found.");
                 return studentZipFiles;
             }
-
-            System.out.println(studentZipFiles.size() + " student zip files found.");
-            for (File studentZip : studentZipFiles) {
-                System.out.println("Student Zip File: " + studentZip.getName());
+            if (studentZipFiles.size() > 50) {
+                System.out.println("Too Many Student Submissions (" +  studentZipFiles.size() + "). Should Be Atmost 50.");
+                System.exit(0);
+            } else{
+                System.out.println(studentZipFiles.size() + " Student Submissions Found.\n");
             }
         } catch (IOException e) {
             System.err.println("Error during extraction: " + e.getMessage());
@@ -51,7 +52,6 @@ public class ZipManager {
 
         try {
             deleteDirectory(submissionsFolder);
-            System.out.println("Deleted submissions folder: " + submissionsFolder.getPath());
 
             File[] files = mainJavaFolder.listFiles((dir, name) -> name.endsWith(".java") && !name.endsWith("Test.java"));
             if (files != null) {
@@ -69,16 +69,14 @@ public class ZipManager {
                 for (File studentFolder : studentIdFolders) {
                     if (isValidStudentFolder(studentFolder)) {
                         deleteDirectory(studentFolder);
-                        System.out.println("Deleted student folder: " + studentFolder.getPath());
                     }
                 }
             }
         } catch (Exception e) {
             System.err.println("Error during cleanup process.");
-            System.err.println("Error: " + e.getMessage());
         }
         
-        System.out.println("Cleanup completed: all extracted files, student folders, and the submissions folder deleted.");
+        System.out.println("Grading Completed! Grade Reports Are Now Available :D.");
     }
     
     // Helper Method

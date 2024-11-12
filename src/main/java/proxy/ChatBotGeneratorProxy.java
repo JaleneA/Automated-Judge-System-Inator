@@ -36,7 +36,6 @@ public class ChatBotGeneratorProxy implements ChatBotGeneratorService {
             }
             
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            System.err.println("Error: " + e.getMessage());
             return "Error: Could not invoke method.";
         }
     }
@@ -51,7 +50,6 @@ public class ChatBotGeneratorProxy implements ChatBotGeneratorService {
                 }
                 return defineClass(null, classData, 0, classData.length);
             } catch (IOException e) {
-                System.err.println("Error: " + e.getMessage());
                 throw new ClassNotFoundException("Class file not found at: " + filePath, e);
             }
         }
