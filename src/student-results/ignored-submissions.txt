@@ -1,0 +1,3 @@
+Skipping Folder: 816034038_COMP_2603_Assignment_1.zip (Invalid Naming Convention For Student Submission
+- Should Be -> 'FirstName_LastName_ID_A1')
+
