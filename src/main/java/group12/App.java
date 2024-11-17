@@ -25,14 +25,20 @@ import template.ZipExtractor;
 import template.facade.ZipManager;
 
 /**
- * The {@link App} class contains the {@code main} method, the entry point for
- * the program.
+ * This class contains the {@code main} method, the entry point for the program.
  * <p>
  * Note: Just Run And Witness The Magic ;-)
  * <p>
  * Todo: Split Into Different Classes So It Won't Look So Ugly
  *
  * @author jalenearmstrong
+ *
+ * @see factory.TestGradingFactory
+ * @see template.ZipExtractor
+ * @see template.facade.ZipManager
+ * @see observer.TestGradingManager
+ * @see observer.TestGradingObserver
+ * @see servicelocator.StudentService
  */
 public class App {
 
@@ -51,14 +57,17 @@ public class App {
      * student submissions. It uses the {@code ZipManager} to identify ZIP files
      * matching a specific pattern and the {@code ZipExtractor} to extract and
      * process their contents.
-     * </p>
      *
      * <p>
-     * Notes</p>
-     * - The method requires the base and output directories to exist prior to
-     * execution. - ZIP file process expects files to follow a specific naming
-     * pattern, defined by {@code mainZipPattern}. - Ensure that required files
-     * are accurately listed in the {@code requiredFiles} set.
+     * Notes:
+     * <ul>
+     * <li>The method requires the base and output directories to exist prior to
+     * execution.</li>
+     * <li>ZIP file process expects files to follow a specific naming pattern,
+     * defined by {@code mainZipPattern}.</li>
+     * <li>Ensure that required files are accurately listed in the
+     * {@code requiredFiles} set.</li>
+     * </ul>
      *
      * @throws IOException if an I/O error occurs during file extraction or
      * processing.

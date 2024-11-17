@@ -18,14 +18,20 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 /**
- * The {@link PDFGenerator} class generates a PDF that organizes the submission
- * test results into an human-readable format.
+ * This class generates a PDF that organizes the submission test results into an
+ * human-readable format.
  * <p>
  * Todo: Still To Modify
  *
  * @author jalenearmstrong (Editor)
+ *
  * @see <a href=https://www.vogella.com/tutorials/JavaPDF/article.html>Creating
  * PDF with Java and iText - Tutorial</a>
+ * @see com.itextpdf.text.Document
+ * @see com.itextpdf.text.Paragraph
+ * @see com.itextpdf.text.pdf.PdfPTable
+ * @see com.itextpdf.text.pdf.PdfPCell
+ * @see com.itextpdf.text.pdf.PdfWriter
  */
 public class PDFGenerator {
 
@@ -56,7 +62,8 @@ public class PDFGenerator {
      *
      * @param studentId the student ID for whom the report is being generated
      * @param testResults a Map containing test names as keys and boolean values
-     * indicating whether each test passed (true) or failed (false)
+     * indicating whether each test passed ({@code true}) or failed
+     * ({@code false}).
      */
     public static void generatePDFReport(String studentId, Map<String, Boolean> testResults) {
         String directoryPath = "src/student-results";
