@@ -16,6 +16,7 @@ import observer.TestMarkingListener;
  */
 public interface TestGrading {
 
+    // -- ABSTRACT METHODS --
     /**
      * Adds an observer to be notified of test results.
      *

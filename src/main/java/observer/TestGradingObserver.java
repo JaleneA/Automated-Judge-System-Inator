@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class TestGradingObserver implements TestMarkingListener {
 
+    // -- INSTANCE VARIABLES --
     /**
      * A list of {@link TestResult} objects, each representing the result of a
      * specific test.
@@ -35,33 +36,7 @@ public class TestGradingObserver implements TestMarkingListener {
      */
     private int totalFailedTests = 0;
 
-    /**
-     * Called when a test is marked with a result (either passed or failed).
-     *
-     * @param testResult {@code true} if the test passed, {@code false} if it
-     * failed.
-     */
-    @Override
-    public void onTestMarked(boolean testResult) {
-        if (testResult) {
-            totalPassedTests++;
-        } else {
-            totalFailedTests++;
-        }
-    }
-
-    /**
-     * Stores the result of a specific test, including its class name and the
-     * result.
-     *
-     * @param testClassName the name of the test class.
-     * @param testResult {@code true} if the test passed, {@code false} if it
-     * failed.
-     */
-    public void storeTestResult(String testClassName, boolean testResult) {
-        studentTestResults.add(new TestResult(testClassName, testResult));
-    }
-
+    // -- BUSINESS LOGIC METHODS --
     /**
      * Displays the summary of test results, including the number of passed and
      * failed tests.
@@ -84,6 +59,19 @@ public class TestGradingObserver implements TestMarkingListener {
     }
 
     /**
+     * Stores the result of a specific test, including its class name and the
+     * result.
+     *
+     * @param testClassName the name of the test class.
+     * @param testResult {@code true} if the test passed, {@code false} if it
+     * failed.
+     */
+    public void storeTestResult(String testClassName, boolean testResult) {
+        studentTestResults.add(new TestResult(testClassName, testResult));
+    }
+
+    // -- GETTERS --
+    /**
      * Gets the list of all stored test results.
      *
      * @return a list of {@link TestResult} objects representing the results of
@@ -93,6 +81,7 @@ public class TestGradingObserver implements TestMarkingListener {
         return studentTestResults;
     }
 
+    // -- SETTERS --
     /**
      * Sets the list of stored test results.
      *
@@ -101,5 +90,21 @@ public class TestGradingObserver implements TestMarkingListener {
      */
     public void setTestResults(List<TestResult> studentTestResults) {
         this.studentTestResults = studentTestResults;
+    }
+
+    // -- OVERRIDDEN METHODS --
+    /**
+     * Called when a test is marked with a result (either passed or failed).
+     *
+     * @param testResult {@code true} if the test passed, {@code false} if it
+     * failed.
+     */
+    @Override
+    public void onTestMarked(boolean testResult) {
+        if (testResult) {
+            totalPassedTests++;
+        } else {
+            totalFailedTests++;
+        }
     }
 }

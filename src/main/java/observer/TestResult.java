@@ -16,6 +16,7 @@ package observer;
  */
 public class TestResult {
 
+    // -- INSTANCE VARIABLES --
     /**
      * The name of the test class.
      */
@@ -26,8 +27,9 @@ public class TestResult {
      */
     private final boolean passed;
 
+    // -- CONSTRUCTORS --
     /**
-     * Creates a new {@code TestResult} object with the specified test class
+     * Constructs a new {@code TestResult} object with the specified test class
      * name and result.
      *
      * @param testClassName the name of the test class.
@@ -39,6 +41,7 @@ public class TestResult {
         this.passed = passed;
     }
 
+    // -- GETTERS --
     /**
      * Gets the name of the test class.
      *

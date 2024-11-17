@@ -13,6 +13,7 @@ package observer;
  */
 public interface TestMarkingListener {
 
+    // -- ABSTRACT METHODS --
     /**
      * Invoked when a test has been marked as either passed or failed.
      *

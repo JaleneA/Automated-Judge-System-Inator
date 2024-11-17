@@ -13,12 +13,14 @@ package observer;
  */
 public class TestGradingManager {
 
+    // -- CLASS VARIABLES --
     /**
      * The single shared instance of {@link TestGradingObserver}. This observer
      * is used to store and manage test results.
      */
     private static TestGradingObserver gradingObserver = new TestGradingObserver();
 
+    // -- BUSINESS LOGIC METHODS --
     /**
      * Returns the singleton instance of {@link TestGradingObserver}.
      *

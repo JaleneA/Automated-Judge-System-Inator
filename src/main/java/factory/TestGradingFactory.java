@@ -26,7 +26,7 @@ package factory;
  * @see ChatBotSimulationTestGrading
  */
 public class TestGradingFactory {
-
+    // -- BUSINESS LOGIC METHODS --
     /**
      * Creates an instance of {@link TestGrading} based on the specified class
      * name.

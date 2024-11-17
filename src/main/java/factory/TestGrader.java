@@ -19,11 +19,13 @@ import java.io.File;
  */
 public class TestGrader {
 
+    // -- INSTANCE VARIABLES --
     /**
      * The {@link TestGrading} instance used to grade the student's submission.
      */
     private final TestGrading testGrading;
 
+    // -- CONSTRUCTORS --
     /**
      * Constructs a {@code TestGrader} for the specified student and class.
      *
@@ -36,6 +38,7 @@ public class TestGrader {
                 className);
     }
 
+    // -- BUSINESS LOGIC METHODS --
     /**
      * Grades the student's submission by running the JUnit tests contained in
      * the provided Java file.

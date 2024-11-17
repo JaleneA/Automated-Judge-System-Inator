@@ -107,6 +107,72 @@ public class ChatBotSimulationTestGrading implements TestGrading {
         }
     }
 
+    // -- OVERRIDDEN METHODS --
+    /**
+     * Adds a new observer to be notified of test results.
+     *
+     * @param observer the observer to be added.
+     */
+    @Override
+    public void addObserver(TestMarkingListener observer) {
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
+    }
+
+    /**
+     * Resets the test marker state.
+     */
+    @Override
+    public void reset() {
+        testMarker.reset();
+    }
+
+    /**
+     * Executes the JUnit 5 tests contained in the specified Java file.
+     * <p>
+     * The method discovers and runs tests defined in the file, marking each
+     * test as passed or failed and notifying observers of the results.
+     *
+     * @param javaFile the Java source file containing the test definitions.
+     */
+    @Override
+    public void runTests(File javaFile) {
+        try {
+            String testClassName = javaFile.getName().replace(".java", "Test");
+            String fullClassName = "testclasses." + testClassName;
+
+            org.junit.platform.launcher.Launcher launcher = LauncherFactory.create();
+
+            LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
+                    .selectors(DiscoverySelectors.selectClass(fullClassName))
+                    .build();
+
+            TestPlan testPlan = launcher.discover(request);
+
+            TestExecutionListener listener = new TestExecutionListener() {
+                @Override
+                public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
+                    if (!testIdentifier.isTest()) {
+                        return;
+                    }
+                    boolean testPassed = testExecutionResult.getStatus() == TestExecutionResult.Status.SUCCESSFUL;
+                    testMarker.markTest(testPassed);
+                    notifyObservers(testPassed);
+                    gradingObserver.storeTestResult(testIdentifier.getDisplayName(), testPassed);
+                }
+            };
+
+            launcher.registerTestExecutionListeners(listener);
+            launcher.execute(testPlan);
+            reset();
+
+        } catch (PreconditionViolationException e) {
+            System.err.println("Failed to execute tests for class: " + e.getMessage());
+            testMarker.markTest(false);
+        }
+    }
+
     // -- GETTERS --
     /**
      * Returns the student ID.
@@ -179,71 +245,5 @@ public class ChatBotSimulationTestGrading implements TestGrading {
      */
     public void setObservers(List<TestMarkingListener> observers) {
         this.observers = observers;
-    }
-
-    // -- OVERRIDDEN METHODS --
-    /**
-     * Adds a new observer to be notified of test results.
-     *
-     * @param observer the observer to be added.
-     */
-    @Override
-    public void addObserver(TestMarkingListener observer) {
-        if (!observers.contains(observer)) {
-            observers.add(observer);
-        }
-    }
-
-    /**
-     * Resets the test marker state.
-     */
-    @Override
-    public void reset() {
-        testMarker.reset();
-    }
-
-    /**
-     * Executes the JUnit 5 tests contained in the specified Java file.
-     * <p>
-     * The method discovers and runs tests defined in the file, marking each
-     * test as passed or failed and notifying observers of the results.
-     *
-     * @param javaFile the Java source file containing the test definitions.
-     */
-    @Override
-    public void runTests(File javaFile) {
-        try {
-            String testClassName = javaFile.getName().replace(".java", "Test");
-            String fullClassName = "testclasses." + testClassName;
-
-            org.junit.platform.launcher.Launcher launcher = LauncherFactory.create();
-
-            LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
-                    .selectors(DiscoverySelectors.selectClass(fullClassName))
-                    .build();
-
-            TestPlan testPlan = launcher.discover(request);
-
-            TestExecutionListener listener = new TestExecutionListener() {
-                @Override
-                public void executionFinished(TestIdentifier testIdentifier, TestExecutionResult testExecutionResult) {
-                    if (!testIdentifier.isTest()) {
-                        return;
-                    }
-                    boolean testPassed = testExecutionResult.getStatus() == TestExecutionResult.Status.SUCCESSFUL;
-                    testMarker.markTest(testPassed);
-                    notifyObservers(testPassed);
-                    gradingObserver.storeTestResult(testIdentifier.getDisplayName(), testPassed);
-                }
-            };
-
-            launcher.registerTestExecutionListeners(listener);
-            launcher.execute(testPlan);
-            reset();
-
-        } catch (PreconditionViolationException e) {
-            System.err.println("Failed to execute tests for class: " + e.getMessage());
-            testMarker.markTest(false);
-        }
     }
 }

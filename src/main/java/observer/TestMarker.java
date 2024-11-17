@@ -14,14 +14,7 @@ package observer;
  */
 public interface TestMarker {
 
-    /**
-     * Marks a single test as either passed or failed.
-     *
-     * @param testResult {@code true} if the test passed, {@code false} if the
-     * test failed.
-     */
-    void markTest(boolean testResult);
-
+    // -- ABSTRACT METHODS --
     /**
      * Calculates the total number of tests that passed.
      *
@@ -41,6 +34,14 @@ public interface TestMarker {
      * and failed tests.
      */
     void displayResults();
+
+    /**
+     * Marks a single test as either passed or failed.
+     *
+     * @param testResult {@code true} if the test passed, {@code false} if the
+     * test failed.
+     */
+    void markTest(boolean testResult);
 
     /**
      * Resets the test marking state, clearing the number of passed and failed

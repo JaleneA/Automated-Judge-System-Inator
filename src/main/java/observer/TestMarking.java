@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class TestMarking implements TestMarker {
 
+    // -- INSTANCE VARIABLES --
     /**
      * The number of tests that passed.
      */
@@ -38,6 +39,7 @@ public class TestMarking implements TestMarker {
      */
     private List<TestMarkingListener> listeners = new ArrayList<>();
 
+    // -- BUSINESS LOGIC METHODS --
     /**
      * Adds a listener to be notified when a test is marked.
      *
@@ -45,6 +47,69 @@ public class TestMarking implements TestMarker {
      */
     public void addListener(TestMarkingListener listener) {
         listeners.add(listener);
+    }
+
+    /**
+     * Notifies all listeners that a test has been marked with the result.
+     *
+     * @param testResult the result of the test being marked.
+     */
+    private void notifyListeners(boolean testResult) {
+        for (TestMarkingListener listener : listeners) {
+            listener.onTestMarked(testResult);
+        }
+    }
+
+    // -- GETTERS --
+    /**
+     * Gets the list of listeners that are notified when a test is marked.
+     *
+     * @return the list of {@link TestMarkingListener} objects.
+     */
+    public List<TestMarkingListener> getListeners() {
+        return listeners;
+    }
+
+    // -- SETTERS --
+    /**
+     * Sets the list of listeners to be notified when a test is marked.
+     *
+     * @param listeners the list of {@link TestMarkingListener} objects to be
+     * set.
+     */
+    public void setListeners(List<TestMarkingListener> listeners) {
+        this.listeners = listeners;
+    }
+
+    // -- OVERRIDDEN METHODS --
+    /**
+     * Calculates the total number of tests that failed.
+     *
+     * @return the number of failed tests.
+     */
+    @Override
+    public int calculateFailedTests() {
+        return failedTests;
+    }
+
+    /**
+     * Calculates the total number of tests that passed.
+     *
+     * @return the number of passed tests.
+     */
+    @Override
+    public int calculatePassedTests() {
+        return passedTests;
+    }
+
+    /**
+     * Displays the summary of the test results, including the number of passed
+     * and failed tests.
+     */
+    @Override
+    public void displayResults() {
+        System.out.println("Passed Tests: " + calculatePassedTests());
+        System.out.println("Failed Tests: " + calculateFailedTests());
     }
 
     /**
@@ -64,47 +129,6 @@ public class TestMarking implements TestMarker {
     }
 
     /**
-     * Notifies all listeners that a test has been marked with the result.
-     *
-     * @param testResult the result of the test being marked.
-     */
-    private void notifyListeners(boolean testResult) {
-        for (TestMarkingListener listener : listeners) {
-            listener.onTestMarked(testResult);
-        }
-    }
-
-    /**
-     * Calculates the total number of tests that passed.
-     *
-     * @return the number of passed tests.
-     */
-    @Override
-    public int calculatePassedTests() {
-        return passedTests;
-    }
-
-    /**
-     * Calculates the total number of tests that failed.
-     *
-     * @return the number of failed tests.
-     */
-    @Override
-    public int calculateFailedTests() {
-        return failedTests;
-    }
-
-    /**
-     * Displays the summary of the test results, including the number of passed
-     * and failed tests.
-     */
-    @Override
-    public void displayResults() {
-        System.out.println("Passed Tests: " + calculatePassedTests());
-        System.out.println("Failed Tests: " + calculateFailedTests());
-    }
-
-    /**
      * Resets the test marking state, clearing the number of passed and failed
      * tests and removing all listeners.
      */
@@ -113,24 +137,5 @@ public class TestMarking implements TestMarker {
         this.passedTests = 0;
         this.failedTests = 0;
         this.listeners.clear();
-    }
-
-    /**
-     * Gets the list of listeners that are notified when a test is marked.
-     *
-     * @return the list of {@link TestMarkingListener} objects.
-     */
-    public List<TestMarkingListener> getListeners() {
-        return listeners;
-    }
-
-    /**
-     * Sets the list of listeners to be notified when a test is marked.
-     *
-     * @param listeners the list of {@link TestMarkingListener} objects to be
-     * set.
-     */
-    public void setListeners(List<TestMarkingListener> listeners) {
-        this.listeners = listeners;
     }
 }
