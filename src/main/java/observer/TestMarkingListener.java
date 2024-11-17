@@ -1,3 +1,5 @@
+package observer;
+
 /**
  * A listener interface for receiving notifications when a test has been marked.
  * <p>
@@ -9,8 +11,6 @@
  * Design Pattern</a>
  * @see TestMarking
  */
-package observer;
-
 public interface TestMarkingListener {
 
     /**

@@ -1,5 +1,8 @@
+package observer;
+
 /**
- * Represents the result of a test, including the test class name and whether the test passed or failed.
+ * Represents the result of a test, including the test class name and whether
+ * the test passed or failed.
  * <p>
  * This class encapsulates the details of an individual test's result. It stores
  * the name of the test class and the boolean value indicating whether the test
@@ -11,8 +14,6 @@
  * @author jalenearmstrong
  * @see TestGradingObserver
  */
-package observer;
-
 public class TestResult {
 
     /**

@@ -1,3 +1,8 @@
+package observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * An implementation of the {@link TestMarker} interface for marking test
  * results and notifying listeners.
@@ -16,11 +21,6 @@
  * @see <a href="https://refactoring.guru/design-patterns/observer">Observer
  * Design Pattern</a>
  */
-package observer;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestMarking implements TestMarker {
 
     /**

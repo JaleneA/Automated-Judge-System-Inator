@@ -1,17 +1,17 @@
+package observer;
+
 /**
- * This interface defines methods for marking individual tests
- * as passed or failed, calculating the number of passed and failed tests,
- * displaying the results, and resetting the test marking state. Any class that
- * implements this interface must provide the functionality to handle these
- * operations, enabling flexible grading mechanisms.
+ * This interface defines methods for marking individual tests as passed or
+ * failed, calculating the number of passed and failed tests, displaying the
+ * results, and resetting the test marking state. Any class that implements this
+ * interface must provide the functionality to handle these operations, enabling
+ * flexible grading mechanisms.
  *
  * @author jalenearmstrong
  * @see <a href="https://refactoring.guru/design-patterns/observer">Observer
  * Design Pattern</a>
  * @see TestGradingObserver
  */
-package observer;
-
 public interface TestMarker {
 
     /**
