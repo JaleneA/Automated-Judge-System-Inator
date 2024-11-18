@@ -1,12 +1,3 @@
-/**
- * @author jalenearmstrong
- * @author ronaldowalker
- * 
- * Test Suite For ChatBotSimulation - 4 Tests | Structural : 4
- * jalenearmstrong - Modified Structural Test For Proxy Enivornment
- * ronaldowalker - Structural Tests
- */
-
 package testclasses;
 
 import java.lang.reflect.Method;
@@ -21,16 +12,48 @@ import org.junit.jupiter.api.Test;
 import proxy.ChatBotSimulationProxy;
 import proxy.service.ChatBotSimulationService;
 
+/**
+ * Test suite for {@link ChatBotSimulationProxy} which implements
+ * {@link ChatBotSimulationService}.
+ * <p>
+ * This test suite contains 4 structural tests to validate the correct structure
+ * and behavior of the {@link ChatBotSimulation} class within the proxy
+ * environment.
+ * <p>
+ * <ul>
+ * <li><a href=https://github.com/JaleneA>jalenearmstrong</a> is responsible for
+ * the modified structural test for proxy environment.</li>
+ * <li><a href=https://github.com/ronaldowalker/>ronaldowalker</a> is
+ * responsible for structural tests.</li>
+ * </ul>
+ *
+ * @author jalenearmstrong
+ * @author ronaldowalker
+ * @see ChatBotSimulationProxy
+ * @see ChatBotSimulationService
+ */
 public class ChatBotSimulationTest {
 
+    // -- CLASS VARIABLES --
     private static ChatBotSimulationService chatBotSimulation;
 
+    // -- BUSINESS LOGIC METHODS --
+    /**
+     * Setup method to initialize the {@link ChatBotSimulationProxy} and call
+     * the main method before each test.
+     */
     @BeforeEach
     public void setUp() {
         chatBotSimulation = new ChatBotSimulationProxy();
         chatBotSimulation.main();
     }
 
+    // -- STRUCTURAL TESTS --
+    /**
+     * Tests if the 'main' method exists in the {@link ChatBotSimulation} class.
+     *
+     * @throws AssertionError is the method does not exist.
+     */
     @Test
     public void testMainMethodExists() {
         try {
@@ -42,6 +65,12 @@ public class ChatBotSimulationTest {
         }
     }
 
+    /**
+     * Tests if the 'main' method is public in the {@link ChatBotSimulation}
+     * class.
+     * 
+     * @throws AssertionError if the method is not public.
+     */
     @Test
     public void testMainIsPublic() {
         try {
@@ -53,6 +82,12 @@ public class ChatBotSimulationTest {
         }
     }
 
+    /**
+     * Tests if the 'main' method is static in the {@link ChatBotSimulation}
+     * class.
+     * 
+     * @throws AssertionError if the method is not static.
+     */
     @Test
     public void testMainIsStatic() {
         try {
@@ -64,6 +99,12 @@ public class ChatBotSimulationTest {
         }
     }
 
+    /**
+     * Tests if the 'main' method returns void in the {@link ChatBotSimulation}
+     * class.
+     * 
+     * @throws AssertionError if the method does not return void.
+     */
     @Test
     public void testMainReturnsVoid() {
         try {
@@ -75,4 +116,3 @@ public class ChatBotSimulationTest {
         }
     }
 }
-
