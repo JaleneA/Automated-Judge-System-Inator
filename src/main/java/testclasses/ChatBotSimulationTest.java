@@ -17,9 +17,8 @@ import proxy.service.ChatBotSimulationService;
  * {@link ChatBotSimulationService}.
  * <p>
  * This test suite contains 4 structural tests to validate the correct structure
- * and behavior of the {@link ChatBotSimulation} class within the proxy
+ * and behavior of the {@code ChatBotSimulation} class within the proxy
  * environment.
- * <p>
  * <ul>
  * <li><a href=https://github.com/JaleneA>jalenearmstrong</a> is responsible for
  * the modified structural test for proxy environment.</li>
@@ -50,7 +49,7 @@ public class ChatBotSimulationTest {
 
     // -- STRUCTURAL TESTS --
     /**
-     * Tests if the 'main' method exists in the {@link ChatBotSimulation} class.
+     * Tests if the 'main' method exists in the {@code ChatBotSimulation} class.
      *
      * @throws AssertionError is the method does not exist.
      */
@@ -66,7 +65,7 @@ public class ChatBotSimulationTest {
     }
 
     /**
-     * Tests if the 'main' method is public in the {@link ChatBotSimulation}
+     * Tests if the 'main' method is public in the {@code ChatBotSimulation}
      * class.
      * 
      * @throws AssertionError if the method is not public.
@@ -83,7 +82,7 @@ public class ChatBotSimulationTest {
     }
 
     /**
-     * Tests if the 'main' method is static in the {@link ChatBotSimulation}
+     * Tests if the 'main' method is static in the {@code ChatBotSimulation}
      * class.
      * 
      * @throws AssertionError if the method is not static.
@@ -100,7 +99,7 @@ public class ChatBotSimulationTest {
     }
 
     /**
-     * Tests if the 'main' method returns void in the {@link ChatBotSimulation}
+     * Tests if the 'main' method returns void in the {@code ChatBotSimulation}
      * class.
      * 
      * @throws AssertionError if the method does not return void.

@@ -18,8 +18,7 @@ import proxy.service.ChatBotGeneratorService;
  * <p>
  * This test suite contains 10 tests, comprising 7 functionality tests and 3
  * structural tests. It is designed to verify the correct behavior and structure
- * of the {@link ChatBotGenerator} class within the proxy environment.
- * <p>
+ * of the {@code ChatBotGenerator} class within the proxy environment.
  * <ul>
  * <li><a href=https://github.com/JaleneA>jalenearmstrong</a> is responsible for
  * functionality tests and a modified structural test for proxy

@@ -19,8 +19,7 @@ import proxy.service.ChatBotPlatformService;
  * <p>
  * This test suite contains 14 tests, consisting of 3 functionality tests and 11
  * structural tests. It is designed to verify the correct behavior and structure
- * of the {@link ChatBotPlatform} class within the proxy environment.
- * <p>
+ * of the {@code ChatBotPlatform} class within the proxy environment.
  * <ul>
  * <li><a href=https://github.com/JaleneA>jalenearmstrong</a> is responsible for
  * functionality tests and a modified structural test for proxy
@@ -52,7 +51,7 @@ public class ChatBotPlatformTest {
     // -- STRUCTURAL TESTS --
     /**
      * Tests if the constructor 'ChatBotPlatform()' exists in the
-     * {@link ChatBotPlatformProxy} class.
+     * {@code ChatBotPlatformProxy} class.
      *
      * @throws AssertionError if the method does not exist.
      */

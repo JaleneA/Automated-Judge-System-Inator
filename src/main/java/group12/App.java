@@ -68,9 +68,8 @@ public class App {
      * <li>Ensure that required files are accurately listed in the
      * {@code requiredFiles} set.</li>
      * </ul>
-     *
-     * @throws IOException if an I/O error occurs during file extraction or
-     * processing.
+     * 
+     * @param args (This main function does not accept any arguments)
      */
     public static void main(String[] args) {
         String mainZipPattern = "Submission_Batch_\\d+\\.zip";
@@ -125,8 +124,6 @@ public class App {
      * Writes the provided message to the log file.
      *
      * @param message The message to be written.
-     * @throws IOException if an I/O error occurs while accessing or writing to
-     * the file.
      */
     public static void logSkippedFiles(String message) {
         try {
